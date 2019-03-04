@@ -12,7 +12,7 @@ const SignIn = () => {
     return (
         <div className="sign-in">
             <AppHeader buttons={ buttons }/>
-            <main className="main">
+            <main className="main m-5 mx-auto">
                 <SignInForm/>
             </main>
         </div>

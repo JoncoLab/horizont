@@ -5,6 +5,8 @@
   "dependencies": {
     "bootstrap": "^4.3.1",
     "bootswatch": "^4.3.1",
+    "firebase": "^5.8.5",
+    "firebase-tools": "^6.4.0",
     "jquery": "^3.3.1",
     "popper.js": "^1.14.7",
     "react": "^16.8.3",
@@ -47,5 +49,5 @@
   "bugs": {
     "url": "https://github.com/JoncoLab/horizont/issues"
   },
-  "homepage": "https://github.com/JoncoLab/horizont#readme"
+  "homepage": "https://horizont-jobs-jl.firebaseapp.com/"
 }
