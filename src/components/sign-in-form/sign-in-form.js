@@ -1,6 +1,6 @@
 import React from 'react';
 import './sign-in-form.css';
 
-const SignInForm = () => <form><caption>Sign in</caption></form>;
+const SignInForm = () => <form>Sign in</form>;
 
 export default SignInForm;
