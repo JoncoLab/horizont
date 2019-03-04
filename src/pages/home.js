@@ -1,22 +1,21 @@
 import React from 'react';
 import AppHeader from "../components/app-header";
-import SignInForm from "../components/sign-in-form";
 
-const SignIn = () => {
+const Home = () => {
 
     const buttons = [
-        { to: '/', label: 'Home', type: 'secondary' },
+        { to: '/sign-in', label: 'Sign In', type: 'secondary' },
         { to: '/sign-up', label: 'Sign Up', type: 'primary' }
     ];
 
     return (
-        <div className="sign-in">
+        <div className="home">
             <AppHeader buttons={ buttons }/>
             <main className="main">
-                <SignInForm/>
+                <h2>Ще ніколи робота за кордоном не була такою доступною!</h2>
             </main>
         </div>
     );
 };
 
-export default SignIn;
+export default Home;
