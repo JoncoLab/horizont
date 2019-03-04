@@ -1,6 +1,7 @@
 import React from 'react';
 import AppHeader from "../components/app-header";
 import {Link} from "react-router-dom";
+import AppFooter from "../components/app-footer";
 
 const Home = () => {
 
@@ -24,6 +25,7 @@ const Home = () => {
                         </p>
                 </div>
             </main>
+            <AppFooter/>
         </div>
     );
 };
