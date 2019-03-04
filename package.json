@@ -1,6 +1,6 @@
 {
   "name": "horizont",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "private": true,
   "dependencies": {
     "bootstrap": "^4.3.1",
@@ -33,5 +33,18 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "description": "Horizont Jobs",
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JoncoLab/horizont.git"
+  },
+  "author": "Jonco LAb",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JoncoLab/horizont/issues"
+  },
+  "homepage": "https://github.com/JoncoLab/horizont#readme"
 }
