@@ -2,7 +2,7 @@ import React from 'react';
 import './app-footer.css';
 
 const footerTitle = () => (
-    <div>
+    <div className="container">
         <legend>На зв'язку!</legend>
         <p>У Вас залишилися питання, або виникли пропозиції? Ми із задоволенням готові прислухатися до Вас!
             Заповніть форму нижче, або оберіть будь-який зручний Вам спосіб коммунікації:</p>
@@ -11,9 +11,9 @@ const footerTitle = () => (
 
 
 const footerForm = () => (
-    <section id="footer">
-        <div className={"inner"}>
-            <form>
+    <footer className="container">
+        <div className="row">
+            <form method="post" className="col-md" id="table">
                 <fieldset>
                     <div className="form-group">
                         <label htmlFor="name">ІМ'Я</label>
@@ -27,13 +27,13 @@ const footerForm = () => (
 
                     <div className="form-group">
                         <label htmlFor="Textarea">ВАШЕ ПОВІДОМЛЕННЯ</label>
-                        <textarea className="form-control" id="Textarea" rows="3"></textarea>
+                        <textarea className="form-control" id="Textarea" rows="3">{""}</textarea>
                     </div>
 
                     <button type="submit" className="btn btn-primary">НАДІСЛАТИ</button>
                 </fieldset>
             </form>
-            <ul className="contact">
+            <ul className="col-md" id="footerUl">
                 <li className="fa-home">
                     Horizont Jobs<br/>
                     88018, вул. Вулична, №2894<br/>
@@ -41,21 +41,26 @@ const footerForm = () => (
                 </li>
                 <li className="fa-phone">+380 (00) 111 1111</li>
                 <li className="fa-phone">+420 (00) 222 2222</li>
-                <li className="fa-envelope"><a href="#">information@horizontjobs.com</a></li>
-                <li className="fa-facebook"><a href="#">facebook.com/horizont-jobs</a></li>
-                <li className="fa-paper-plane"><a href="#">@horizontjobs</a></li>
-            </ul>
-            <ul className="copyright">
-                <li>&copy; Horizont 2018. All rights reserved.</li>
-                <li>Design: <a href="https://joncolab.pro">Jonco Lab</a></li>
+                <li className="fa-envelope"><a href="/">information@horizontjobs.com</a></li>
+                <li className="fa-facebook"><a href="/">facebook.com/horizont-jobs</a></li>
+                <li className="fa-paper-plane"><a href="/">@horizontjobs</a></li>
             </ul>
         </div>
-    </section>
+    </footer>
+);
+
+const footerCopyright = () => (
+    <ul className="copyright">
+        <hr/>
+        <li>&copy; Horizont 2018. All rights reserved.</li>
+        <li>Design: <a href="https://joncolab.pro">Jonco Lab</a></li>
+    </ul>
 );
 
 const AppFooter = () => <footer>
     {footerTitle()}
     {footerForm()}
+    {footerCopyright()}
 </footer>;
 
 export default AppFooter;
