@@ -9,10 +9,9 @@ import FirebaseService from '../../services/firebase-service';
 
 const fs = new FirebaseService();
 
-fs.apiDiscoveryUrl('firestore').then(({ items }) => {
-    const [{ name, discoveryRestUrl }] = items;
-    console.log(`${name} discovery link: ${discoveryRestUrl}`);
-});
+const users = async () => await fs.getAllUsers();
+
+console.log(users());
 
 export default class App extends Component {
 
