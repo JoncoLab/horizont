@@ -1,0 +1,759 @@
+{
+ "items": [
+  {
+   "id": "abusiveexperiencereport:v1",
+   "name": "abusiveexperiencereport",
+   "discoveryRestUrl": "https://abusiveexperiencereport.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "acceleratedmobilepageurl:v1",
+   "name": "acceleratedmobilepageurl",
+   "discoveryRestUrl": "https://acceleratedmobilepageurl.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "accesscontextmanager:v1beta",
+   "name": "accesscontextmanager",
+   "discoveryRestUrl": "https://accesscontextmanager.googleapis.com/$discovery/rest?version=v1beta"
+  },
+  {
+   "id": "adexchangebuyer:v1.4",
+   "name": "adexchangebuyer",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/adexchangebuyer/v1.4/rest"
+  },
+  {
+   "id": "adexchangebuyer2:v2beta1",
+   "name": "adexchangebuyer2",
+   "discoveryRestUrl": "https://adexchangebuyer.googleapis.com/$discovery/rest?version=v2beta1"
+  },
+  {
+   "id": "adexperiencereport:v1",
+   "name": "adexperiencereport",
+   "discoveryRestUrl": "https://adexperiencereport.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "admin:reports_v1",
+   "name": "admin",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/admin/reports_v1/rest"
+  },
+  {
+   "id": "adsense:v1.4",
+   "name": "adsense",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/adsense/v1.4/rest"
+  },
+  {
+   "id": "adsensehost:v4.1",
+   "name": "adsensehost",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/adsensehost/v4.1/rest"
+  },
+  {
+   "id": "alertcenter:v1beta1",
+   "name": "alertcenter",
+   "discoveryRestUrl": "https://alertcenter.googleapis.com/$discovery/rest?version=v1beta1"
+  },
+  {
+   "id": "analytics:v3",
+   "name": "analytics",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/analytics/v3/rest"
+  },
+  {
+   "id": "analyticsreporting:v4",
+   "name": "analyticsreporting",
+   "discoveryRestUrl": "https://analyticsreporting.googleapis.com/$discovery/rest?version=v4"
+  },
+  {
+   "id": "androiddeviceprovisioning:v1",
+   "name": "androiddeviceprovisioning",
+   "discoveryRestUrl": "https://androiddeviceprovisioning.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "androidenterprise:v1",
+   "name": "androidenterprise",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/androidenterprise/v1/rest"
+  },
+  {
+   "id": "androidmanagement:v1",
+   "name": "androidmanagement",
+   "discoveryRestUrl": "https://androidmanagement.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "androidpublisher:v3",
+   "name": "androidpublisher",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/androidpublisher/v3/rest"
+  },
+  {
+   "id": "appengine:v1",
+   "name": "appengine",
+   "discoveryRestUrl": "https://appengine.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "appsactivity:v1",
+   "name": "appsactivity",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/appsactivity/v1/rest"
+  },
+  {
+   "id": "appstate:v1",
+   "name": "appstate",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/appstate/v1/rest"
+  },
+  {
+   "id": "bigquery:v2",
+   "name": "bigquery",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/bigquery/v2/rest"
+  },
+  {
+   "id": "bigquerydatatransfer:v1",
+   "name": "bigquerydatatransfer",
+   "discoveryRestUrl": "https://bigquerydatatransfer.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "bigtableadmin:v2",
+   "name": "bigtableadmin",
+   "discoveryRestUrl": "https://bigtableadmin.googleapis.com/$discovery/rest?version=v2"
+  },
+  {
+   "id": "binaryauthorization:v1beta1",
+   "name": "binaryauthorization",
+   "discoveryRestUrl": "https://binaryauthorization.googleapis.com/$discovery/rest?version=v1beta1"
+  },
+  {
+   "id": "blogger:v3",
+   "name": "blogger",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/blogger/v3/rest"
+  },
+  {
+   "id": "books:v1",
+   "name": "books",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/books/v1/rest"
+  },
+  {
+   "id": "calendar:v3",
+   "name": "calendar",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"
+  },
+  {
+   "id": "chat:v1",
+   "name": "chat",
+   "discoveryRestUrl": "https://chat.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "civicinfo:v2",
+   "name": "civicinfo",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/civicinfo/v2/rest"
+  },
+  {
+   "id": "classroom:v1",
+   "name": "classroom",
+   "discoveryRestUrl": "https://classroom.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "cloudasset:v1beta1",
+   "name": "cloudasset",
+   "discoveryRestUrl": "https://cloudasset.googleapis.com/$discovery/rest?version=v1beta1"
+  },
+  {
+   "id": "cloudbilling:v1",
+   "name": "cloudbilling",
+   "discoveryRestUrl": "https://cloudbilling.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "cloudbuild:v1",
+   "name": "cloudbuild",
+   "discoveryRestUrl": "https://cloudbuild.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "clouddebugger:v2",
+   "name": "clouddebugger",
+   "discoveryRestUrl": "https://clouddebugger.googleapis.com/$discovery/rest?version=v2"
+  },
+  {
+   "id": "clouderrorreporting:v1beta1",
+   "name": "clouderrorreporting",
+   "discoveryRestUrl": "https://clouderrorreporting.googleapis.com/$discovery/rest?version=v1beta1"
+  },
+  {
+   "id": "cloudfunctions:v1",
+   "name": "cloudfunctions",
+   "discoveryRestUrl": "https://cloudfunctions.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "cloudidentity:v1",
+   "name": "cloudidentity",
+   "discoveryRestUrl": "https://cloudidentity.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "cloudiot:v1",
+   "name": "cloudiot",
+   "discoveryRestUrl": "https://cloudiot.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "cloudkms:v1",
+   "name": "cloudkms",
+   "discoveryRestUrl": "https://cloudkms.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "cloudprivatecatalog:v1beta1",
+   "name": "cloudprivatecatalog",
+   "discoveryRestUrl": "https://cloudprivatecatalog.googleapis.com/$discovery/rest?version=v1beta1"
+  },
+  {
+   "id": "cloudprivatecatalogproducer:v1beta1",
+   "name": "cloudprivatecatalogproducer",
+   "discoveryRestUrl": "https://cloudprivatecatalogproducer.googleapis.com/$discovery/rest?version=v1beta1"
+  },
+  {
+   "id": "cloudprofiler:v2",
+   "name": "cloudprofiler",
+   "discoveryRestUrl": "https://cloudprofiler.googleapis.com/$discovery/rest?version=v2"
+  },
+  {
+   "id": "cloudresourcemanager:v2",
+   "name": "cloudresourcemanager",
+   "discoveryRestUrl": "https://cloudresourcemanager.googleapis.com/$discovery/rest?version=v2"
+  },
+  {
+   "id": "cloudscheduler:v1beta1",
+   "name": "cloudscheduler",
+   "discoveryRestUrl": "https://cloudscheduler.googleapis.com/$discovery/rest?version=v1beta1"
+  },
+  {
+   "id": "cloudsearch:v1",
+   "name": "cloudsearch",
+   "discoveryRestUrl": "https://cloudsearch.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "cloudshell:v1",
+   "name": "cloudshell",
+   "discoveryRestUrl": "https://cloudshell.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "cloudtasks:v2beta3",
+   "name": "cloudtasks",
+   "discoveryRestUrl": "https://cloudtasks.googleapis.com/$discovery/rest?version=v2beta3"
+  },
+  {
+   "id": "cloudtrace:v2",
+   "name": "cloudtrace",
+   "discoveryRestUrl": "https://cloudtrace.googleapis.com/$discovery/rest?version=v2"
+  },
+  {
+   "id": "composer:v1",
+   "name": "composer",
+   "discoveryRestUrl": "https://composer.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "compute:v1",
+   "name": "compute",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/compute/v1/rest"
+  },
+  {
+   "id": "container:v1",
+   "name": "container",
+   "discoveryRestUrl": "https://container.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "containeranalysis:v1alpha1",
+   "name": "containeranalysis",
+   "discoveryRestUrl": "https://containeranalysis.googleapis.com/$discovery/rest?version=v1alpha1"
+  },
+  {
+   "id": "content:v2.1",
+   "name": "content",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/content/v2.1/rest"
+  },
+  {
+   "id": "customsearch:v1",
+   "name": "customsearch",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/customsearch/v1/rest"
+  },
+  {
+   "id": "dataflow:v1b3",
+   "name": "dataflow",
+   "discoveryRestUrl": "https://dataflow.googleapis.com/$discovery/rest?version=v1b3"
+  },
+  {
+   "id": "dataproc:v1",
+   "name": "dataproc",
+   "discoveryRestUrl": "https://dataproc.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "datastore:v1",
+   "name": "datastore",
+   "discoveryRestUrl": "https://datastore.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "deploymentmanager:v2",
+   "name": "deploymentmanager",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/deploymentmanager/v2/rest"
+  },
+  {
+   "id": "dfareporting:v3.3",
+   "name": "dfareporting",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/dfareporting/v3.3/rest"
+  },
+  {
+   "id": "dialogflow:v2",
+   "name": "dialogflow",
+   "discoveryRestUrl": "https://dialogflow.googleapis.com/$discovery/rest?version=v2"
+  },
+  {
+   "id": "digitalassetlinks:v1",
+   "name": "digitalassetlinks",
+   "discoveryRestUrl": "https://digitalassetlinks.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "discovery:v1",
+   "name": "discovery",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/discovery/v1/rest"
+  },
+  {
+   "id": "dlp:v2",
+   "name": "dlp",
+   "discoveryRestUrl": "https://dlp.googleapis.com/$discovery/rest?version=v2"
+  },
+  {
+   "id": "dns:v1",
+   "name": "dns",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/dns/v1/rest"
+  },
+  {
+   "id": "docs:v1",
+   "name": "docs",
+   "discoveryRestUrl": "https://docs.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "doubleclickbidmanager:v1",
+   "name": "doubleclickbidmanager",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/doubleclickbidmanager/v1/rest"
+  },
+  {
+   "id": "doubleclicksearch:v2",
+   "name": "doubleclicksearch",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/doubleclicksearch/v2/rest"
+  },
+  {
+   "id": "drive:v3",
+   "name": "drive",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"
+  },
+  {
+   "id": "driveactivity:v2",
+   "name": "driveactivity",
+   "discoveryRestUrl": "https://driveactivity.googleapis.com/$discovery/rest?version=v2"
+  },
+  {
+   "id": "file:v1",
+   "name": "file",
+   "discoveryRestUrl": "https://file.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "firebasedynamiclinks:v1",
+   "name": "firebasedynamiclinks",
+   "discoveryRestUrl": "https://firebasedynamiclinks.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "firebasehosting:v1beta1",
+   "name": "firebasehosting",
+   "discoveryRestUrl": "https://firebasehosting.googleapis.com/$discovery/rest?version=v1beta1"
+  },
+  {
+   "id": "firebaserules:v1",
+   "name": "firebaserules",
+   "discoveryRestUrl": "https://firebaserules.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "firestore:v1",
+   "name": "firestore",
+   "discoveryRestUrl": "https://firestore.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "fitness:v1",
+   "name": "fitness",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/fitness/v1/rest"
+  },
+  {
+   "id": "fusiontables:v2",
+   "name": "fusiontables",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/fusiontables/v2/rest"
+  },
+  {
+   "id": "games:v1",
+   "name": "games",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/games/v1/rest"
+  },
+  {
+   "id": "gamesConfiguration:v1configuration",
+   "name": "gamesConfiguration",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/gamesConfiguration/v1configuration/rest"
+  },
+  {
+   "id": "gamesManagement:v1management",
+   "name": "gamesManagement",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/gamesManagement/v1management/rest"
+  },
+  {
+   "id": "genomics:v1",
+   "name": "genomics",
+   "discoveryRestUrl": "https://genomics.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "gmail:v1",
+   "name": "gmail",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest"
+  },
+  {
+   "id": "groupsmigration:v1",
+   "name": "groupsmigration",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/groupsmigration/v1/rest"
+  },
+  {
+   "id": "groupssettings:v1",
+   "name": "groupssettings",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/groupssettings/v1/rest"
+  },
+  {
+   "id": "healthcare:v1alpha2",
+   "name": "healthcare",
+   "discoveryRestUrl": "https://healthcare.googleapis.com/$discovery/rest?version=v1alpha2"
+  },
+  {
+   "id": "iam:v1",
+   "name": "iam",
+   "discoveryRestUrl": "https://iam.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "iamcredentials:v1",
+   "name": "iamcredentials",
+   "discoveryRestUrl": "https://iamcredentials.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "iap:v1",
+   "name": "iap",
+   "discoveryRestUrl": "https://iap.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "identitytoolkit:v3",
+   "name": "identitytoolkit",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/identitytoolkit/v3/rest"
+  },
+  {
+   "id": "indexing:v3",
+   "name": "indexing",
+   "discoveryRestUrl": "https://indexing.googleapis.com/$discovery/rest?version=v3"
+  },
+  {
+   "id": "jobs:v3",
+   "name": "jobs",
+   "discoveryRestUrl": "https://jobs.googleapis.com/$discovery/rest?version=v3"
+  },
+  {
+   "id": "kgsearch:v1",
+   "name": "kgsearch",
+   "discoveryRestUrl": "https://kgsearch.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "language:v1",
+   "name": "language",
+   "discoveryRestUrl": "https://language.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "libraryagent:v1",
+   "name": "libraryagent",
+   "discoveryRestUrl": "https://libraryagent.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "licensing:v1",
+   "name": "licensing",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/licensing/v1/rest"
+  },
+  {
+   "id": "logging:v2",
+   "name": "logging",
+   "discoveryRestUrl": "https://logging.googleapis.com/$discovery/rest?version=v2"
+  },
+  {
+   "id": "manufacturers:v1",
+   "name": "manufacturers",
+   "discoveryRestUrl": "https://manufacturers.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "mirror:v1",
+   "name": "mirror",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/mirror/v1/rest"
+  },
+  {
+   "id": "ml:v1",
+   "name": "ml",
+   "discoveryRestUrl": "https://ml.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "monitoring:v3",
+   "name": "monitoring",
+   "discoveryRestUrl": "https://monitoring.googleapis.com/$discovery/rest?version=v3"
+  },
+  {
+   "id": "oauth2:v2",
+   "name": "oauth2",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/oauth2/v2/rest"
+  },
+  {
+   "id": "oslogin:v1",
+   "name": "oslogin",
+   "discoveryRestUrl": "https://oslogin.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "pagespeedonline:v5",
+   "name": "pagespeedonline",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/pagespeedonline/v5/rest"
+  },
+  {
+   "id": "partners:v2",
+   "name": "partners",
+   "discoveryRestUrl": "https://partners.googleapis.com/$discovery/rest?version=v2"
+  },
+  {
+   "id": "people:v1",
+   "name": "people",
+   "discoveryRestUrl": "https://people.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "playcustomapp:v1",
+   "name": "playcustomapp",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/playcustomapp/v1/rest"
+  },
+  {
+   "id": "plus:v1",
+   "name": "plus",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/plus/v1/rest"
+  },
+  {
+   "id": "plusDomains:v1",
+   "name": "plusDomains",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/plusDomains/v1/rest"
+  },
+  {
+   "id": "poly:v1",
+   "name": "poly",
+   "discoveryRestUrl": "https://poly.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "proximitybeacon:v1beta1",
+   "name": "proximitybeacon",
+   "discoveryRestUrl": "https://proximitybeacon.googleapis.com/$discovery/rest?version=v1beta1"
+  },
+  {
+   "id": "pubsub:v1",
+   "name": "pubsub",
+   "discoveryRestUrl": "https://pubsub.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "redis:v1",
+   "name": "redis",
+   "discoveryRestUrl": "https://redis.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "remotebuildexecution:v2",
+   "name": "remotebuildexecution",
+   "discoveryRestUrl": "https://remotebuildexecution.googleapis.com/$discovery/rest?version=v2"
+  },
+  {
+   "id": "replicapool:v1beta1",
+   "name": "replicapool",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/replicapool/v1beta1/rest"
+  },
+  {
+   "id": "reseller:v1",
+   "name": "reseller",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/reseller/v1/rest"
+  },
+  {
+   "id": "runtimeconfig:v1",
+   "name": "runtimeconfig",
+   "discoveryRestUrl": "https://runtimeconfig.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "safebrowsing:v4",
+   "name": "safebrowsing",
+   "discoveryRestUrl": "https://safebrowsing.googleapis.com/$discovery/rest?version=v4"
+  },
+  {
+   "id": "script:v1",
+   "name": "script",
+   "discoveryRestUrl": "https://script.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "searchconsole:v1",
+   "name": "searchconsole",
+   "discoveryRestUrl": "https://searchconsole.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "servicebroker:v1",
+   "name": "servicebroker",
+   "discoveryRestUrl": "https://servicebroker.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "serviceconsumermanagement:v1",
+   "name": "serviceconsumermanagement",
+   "discoveryRestUrl": "https://serviceconsumermanagement.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "servicecontrol:v1",
+   "name": "servicecontrol",
+   "discoveryRestUrl": "https://servicecontrol.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "servicemanagement:v1",
+   "name": "servicemanagement",
+   "discoveryRestUrl": "https://servicemanagement.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "servicenetworking:v1beta",
+   "name": "servicenetworking",
+   "discoveryRestUrl": "https://servicenetworking.googleapis.com/$discovery/rest?version=v1beta"
+  },
+  {
+   "id": "serviceusage:v1",
+   "name": "serviceusage",
+   "discoveryRestUrl": "https://serviceusage.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "sheets:v4",
+   "name": "sheets",
+   "discoveryRestUrl": "https://sheets.googleapis.com/$discovery/rest?version=v4"
+  },
+  {
+   "id": "siteVerification:v1",
+   "name": "siteVerification",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/siteVerification/v1/rest"
+  },
+  {
+   "id": "slides:v1",
+   "name": "slides",
+   "discoveryRestUrl": "https://slides.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "sourcerepo:v1",
+   "name": "sourcerepo",
+   "discoveryRestUrl": "https://sourcerepo.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "spanner:v1",
+   "name": "spanner",
+   "discoveryRestUrl": "https://spanner.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "speech:v1",
+   "name": "speech",
+   "discoveryRestUrl": "https://speech.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "sqladmin:v1beta4",
+   "name": "sqladmin",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/sqladmin/v1beta4/rest"
+  },
+  {
+   "id": "storage:v1",
+   "name": "storage",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/storage/v1/rest"
+  },
+  {
+   "id": "storagetransfer:v1",
+   "name": "storagetransfer",
+   "discoveryRestUrl": "https://storagetransfer.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "streetviewpublish:v1",
+   "name": "streetviewpublish",
+   "discoveryRestUrl": "https://streetviewpublish.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "surveys:v2",
+   "name": "surveys",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/surveys/v2/rest"
+  },
+  {
+   "id": "tagmanager:v2",
+   "name": "tagmanager",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/tagmanager/v2/rest"
+  },
+  {
+   "id": "tasks:v1",
+   "name": "tasks",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/tasks/v1/rest"
+  },
+  {
+   "id": "testing:v1",
+   "name": "testing",
+   "discoveryRestUrl": "https://testing.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "texttospeech:v1",
+   "name": "texttospeech",
+   "discoveryRestUrl": "https://texttospeech.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "toolresults:v1beta3",
+   "name": "toolresults",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/toolresults/v1beta3/rest"
+  },
+  {
+   "id": "tpu:v1",
+   "name": "tpu",
+   "discoveryRestUrl": "https://tpu.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "translate:v2",
+   "name": "translate",
+   "discoveryRestUrl": "https://translation.googleapis.com/$discovery/rest?version=v2"
+  },
+  {
+   "id": "urlshortener:v1",
+   "name": "urlshortener",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/urlshortener/v1/rest"
+  },
+  {
+   "id": "vault:v1",
+   "name": "vault",
+   "discoveryRestUrl": "https://vault.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "videointelligence:v1",
+   "name": "videointelligence",
+   "discoveryRestUrl": "https://videointelligence.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "vision:v1",
+   "name": "vision",
+   "discoveryRestUrl": "https://vision.googleapis.com/$discovery/rest?version=v1"
+  },
+  {
+   "id": "webfonts:v1",
+   "name": "webfonts",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/webfonts/v1/rest"
+  },
+  {
+   "id": "webmasters:v3",
+   "name": "webmasters",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/webmasters/v3/rest"
+  },
+  {
+   "id": "websecurityscanner:v1alpha",
+   "name": "websecurityscanner",
+   "discoveryRestUrl": "https://websecurityscanner.googleapis.com/$discovery/rest?version=v1alpha"
+  },
+  {
+   "id": "youtube:v3",
+   "name": "youtube",
+   "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest"
+  },
+  {
+   "id": "youtubeAnalytics:v2",
+   "name": "youtubeAnalytics",
+   "discoveryRestUrl": "https://youtubeanalytics.googleapis.com/$discovery/rest?version=v2"
+  },
+  {
+   "id": "youtubereporting:v1",
+   "name": "youtubereporting",
+   "discoveryRestUrl": "https://youtubereporting.googleapis.com/$discovery/rest?version=v1"
+  }
+ ]
+}

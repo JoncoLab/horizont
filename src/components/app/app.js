@@ -5,10 +5,19 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import SignIn from '../../pages/signin';
 import SignUp from '../../pages/signup';
 import Home from '../../pages/home';
+import FirebaseService from '../../services/firebase-service';
+
+const fs = new FirebaseService();
+
+fs.apiDiscoveryUrl('firestore').then(({ items }) => {
+    const [{ name, discoveryRestUrl }] = items;
+    console.log(`${name} discovery link: ${discoveryRestUrl}`);
+});
 
 export default class App extends Component {
 
     render() {
+
         return (
             <Router>
                 <div className="app">

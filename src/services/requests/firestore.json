@@ -1,0 +1,8 @@
+{
+ "items": [
+  {
+   "name": "firestore",
+   "discoveryRestUrl": "https://firestore.googleapis.com/$discovery/rest?version=v1"
+  }
+ ]
+}

@@ -1,5 +1,6 @@
 {
   "projects": {
-    "horizont": "horizont-jobs-jl"
+    "horizont": "horizont-jobs-jl",
+    "default": "horizont-jobs-jl"
   }
 }
