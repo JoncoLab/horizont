@@ -1,28 +1,54 @@
 import React, {Component} from 'react';
 import './app.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import SignIn from '../../pages/signin';
-import SignUp from '../../pages/signup';
-import Home from '../../pages/home';
+
+import AppHeader from "../app-header";
+import AppFooter from "../app-footer";
+import WelcomeScreen from "../welcome-screen";
+import SignUpForm from "../sign-up-form";
+import SignInForm from "../sign-in-form";
+
 import FirebaseService from '../../services/firebase-service';
 
-const fs = new FirebaseService();
-
-const users = async () => await fs.getAllUsers();
-
-console.log(users());
-
 export default class App extends Component {
+
+    fs = new FirebaseService();
+
+    state = {
+        alert: false
+    };
+
+    nav = {
+        si: { to: '/sign-in', label: 'Sign In' },
+        su: { to: '/sign-up', label: 'Sign Up' },
+        h: { to: '/', label: 'Home' }
+    };
+
+    componentDidMount() {
+
+    }
 
     render() {
 
         return (
             <Router>
                 <div className="app">
+                    <header>
+                        <Route path="/" exact component={ () =>
+                            <AppHeader buttons={[this.nav.si,this.nav.su]}/>}/>
+                        <Route path="/sign-in" component={ () =>
+                            <AppHeader buttons={[this.nav.h,this.nav.su]}/>}/>
+                        <Route path='/sign-up' component={ () =>
+                                   <AppHeader buttons={[this.nav.h,this.nav.si]}/>}/>
+                    </header>
 
-                    <Route exact path="/" component={ Home }/>
-                    <Route path="/sign-up" component={ SignUp } />
-                    <Route path="/sign-in" component={ SignIn } />
+                    <main className="main mx-auto">
+                        <Route exact path="/" component={ WelcomeScreen }/>
+                        <Route path="/sign-up" component={ SignUpForm } />
+                        <Route path="/sign-in" component={ SignInForm } />
+                    </main>
+
+                    <Route exact path="/" component={ AppFooter }/>
 
                 </div>
             </Router>
