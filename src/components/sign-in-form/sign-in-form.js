@@ -13,44 +13,37 @@ export default class SignInForm extends Component {
         preloader: true
     };
 
-    sISuccWithRes = (alert = false) => {
-        this.setState({
-            alert
-        });
+    alert = ({ message, type = 'primary' }) => this.setState({ alert: { type, message } });
+
+    removeAlert = () => this.setState({ alert: false });
+
+    togglePreloader = () => this.setState(({preloader}) => ({ preloader: !preloader }));
+
+    signInSuccessWithAuthResult = ({ user }) => {
+
+        this.alert(`Signed in successfuly! \r\n User identificator: "${ user.uid }"`);
+        return false;
     };
 
     componentDidMount() {
-        this.fs.startFirebaseUI('firebase-sign-in', this.sISuccWithRes, )
+
+        this.fs.startFirebaseUI(
+            'firebase-sign-in',
+            this.signInSuccessWithAuthResult,
+            this.togglePreloader,
+            'https://google.com',
+            'http://horizontjobs.com')
     }
 
     render() {
-        const { type, message } = this.state.alert;
-        const alert = message ? <Alert type={type} message={message}/> : null;
-        const preloader = this.state.preloader ? <Preloader/> : <fieldset id="firebase-sign-in"/>;
+
+        const { alert, preloader } = this.state;
+
         return (
             <section className="sign-in-form m-5 mx-auto">
-                <form className="card border-primary p-5">
-                    <fieldset>
-                        <div className="form-group">
-                            <label htmlFor="phone">Email address</label>
-                            <input
-                                type="tel"
-                                className="form-control-lg"
-                                id="phone"
-                                name="phone"
-                                aria-describedby="phone-help"
-                                placeholder="Enter your phone"/>
-                            <small id="phone-help"
-                                   className="form-text text-muted">We'll never share your email with anyone
-                                else.</small>
-                        </div>
-                    </fieldset>
-                    <fieldset className="btn-group">
-                        <button type="submit" className="btn btn-primary ml-auto btn-lg">Login</button>
-                    </fieldset>
-                    {preloader}
-                </form>
-                {alert}
+                {alert ? <Alert onUnmount={ this.removeAlert } { ...alert }/> : null}
+                {preloader ? <Preloader/> : null}
+                <div id="firebase-sign-in"/>
             </section>
         );
     }

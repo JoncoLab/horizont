@@ -33,23 +33,22 @@ export default class App extends Component {
         return (
             <Router>
                 <div className="app">
-                    <header>
-                        <Route path="/" exact component={ () =>
-                            <AppHeader buttons={[this.nav.si,this.nav.su]}/>}/>
-                        <Route path="/sign-in" component={ () =>
-                            <AppHeader buttons={[this.nav.h,this.nav.su]}/>}/>
-                        <Route path='/sign-up' component={ () =>
-                                   <AppHeader buttons={[this.nav.h,this.nav.si]}/>}/>
-                    </header>
+                        <header>
+                            <Route path="/" exact component={ () =>
+                                <AppHeader buttons={[this.nav.si,this.nav.su]}/>}/>
+                            <Route path="/sign-in" component={ () =>
+                                <AppHeader buttons={[this.nav.h,this.nav.su]}/>}/>
+                            <Route path='/sign-up' component={ () =>
+                                <AppHeader buttons={[this.nav.h,this.nav.si]}/>}/>
+                        </header>
 
-                    <main className="main mx-auto">
-                        <Route exact path="/" component={ WelcomeScreen }/>
-                        <Route path="/sign-up" component={ SignUpForm } />
-                        <Route path="/sign-in" component={ SignInForm } />
-                    </main>
+                        <main className="main mx-auto">
+                            <Route exact path="/" component={ WelcomeScreen }/>
+                            <Route path="/sign-up" component={ SignUpForm } />
+                            <Route path="/sign-in" component={ SignInForm } />
+                        </main>
 
-                    <Route exact path="/" component={ AppFooter }/>
-
+                        <Route exact path="/" component={ AppFooter }/>
                 </div>
             </Router>
         );

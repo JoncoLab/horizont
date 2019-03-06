@@ -23,8 +23,21 @@
     -moz-animation: alert .7s linear forwards;
     -o-animation: alert .7s linear forwards;
     animation: alert .7s linear forwards;
+
+    max-width: 50%;
+
+    padding: 15px 20px 15px;
+
+    word-break: break-word;
+
 }
 
 .alert-heading {
     text-transform: capitalize;
+    margin-right: 30px;
+}
+
+#alert > p {
+    display: inline-block;
+    width: 100%;
 }

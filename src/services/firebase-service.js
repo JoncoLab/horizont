@@ -2,57 +2,52 @@ import * as firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 import * as firebaseui from 'firebaseui';
+import React, { Fragment } from "react";
+
+const _conf = {
+    app: {
+        apiKey: "AIzaSyAmCCaTn6XBU3Js_QKdhRyW4Ja7xzqCgWU",
+        authDomain: "horizont-jobs-jl.firebaseapp.com",
+        databaseURL: "https://horizont-jobs-jl.firebaseio.com",
+        projectId: "horizont-jobs-jl",
+        storageBucket: "horizont-jobs-jl.appspot.com",
+        messagingSenderId: "123865770797"
+    },
+    ui: {
+        // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
+        signInFlow: 'popup',
+        signInOptions: [{
+            provider: firebase.auth.PhoneAuthProvider.PROVIDER_ID,
+            recaptchaParameters: {
+                type: 'image',
+                size: 'invisible',
+                badge: 'inline'
+            },
+            defaultCountry: 'UA',
+            loginHint: '+380112233444',
+            whitelistedCountries: ['UA', 'CZ', 'SK']
+        }]
+    }
+};
 
 
 export default class FirebaseService {
 
-    _conf = {
-        app: {
-            apiKey: "AIzaSyAmCCaTn6XBU3Js_QKdhRyW4Ja7xzqCgWU",
-            authDomain: "horizont-jobs-jl.firebaseapp.com",
-            databaseURL: "https://horizont-jobs-jl.firebaseio.com",
-            projectId: "horizont-jobs-jl",
-            storageBucket: "horizont-jobs-jl.appspot.com",
-            messagingSenderId: "123865770797"
-        },
-        ui: {
-            // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
-            signInFlow: 'popup',
-            signInOptions: [{
-                    provider: firebase.auth.PhoneAuthProvider.PROVIDER_ID,
-                    recaptchaParameters: {
-                        type: 'image',
-                        size: 'invisible',
-                        badge: 'inline'
-                    },
-                    defaultCountry: 'UK',
-                    loginHint: '+380112233444'
-            }]
-        }
-    };
+    _app = firebase.app();
+    _ui = firebaseui.auth.AuthUI.getInstance();
+    _db = this._app.firestore();
+    _users = this._db.collection('users');
 
-    _app = () => {
-        try {
-            return firebase.app();
-        } catch {
-            return firebase.initializeApp(this._conf.app);
-        }
-    };
-
-    _db = this._app().firestore();
-    _users = this._db.collection("users");
-    _ui = new firebaseui.auth.AuthUI(this._app().auth());
-
-    startFirebaseUI = (id, signInSuccessWithAuthResult, uiShown, signInSuccessUrl, tosUrl, privacyPolicyUrl) => {
+    startFirebaseUI = (id, signInSuccessWithAuthResult, uiShown, tosUrl, privacyPolicyUrl) => {
 
         this._ui.start(`#${id}`, {
             callbacks: {
                 signInSuccessWithAuthResult,
                 uiShown
             },
-            signInSuccessUrl,
             tosUrl,
-            privacyPolicyUrl
+            privacyPolicyUrl,
+            ..._conf.ui
         });
     };
 
@@ -75,3 +70,14 @@ export default class FirebaseService {
             )
             .catch((reason) => alert(reason));
 }
+
+export const FirebaseApp = (props) => {
+    try {
+        firebase.initializeApp(_conf.app);
+        new firebaseui.auth.AuthUI(firebase.app().auth());
+    } catch (e) {
+        console.log(e);
+    }
+
+    return <Fragment>{props.children}</Fragment>;
+};
