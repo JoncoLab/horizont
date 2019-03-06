@@ -7,16 +7,11 @@ import AppFooter from "../app-footer";
 import WelcomeScreen from "../welcome-screen";
 import SignUpForm from "../sign-up-form";
 import SignInForm from "../sign-in-form";
+import alert from '../../services/alert';
 
-import FirebaseService from '../../services/firebase-service';
+import {ToastsContainer, ToastsStore} from 'react-toasts';
 
 export default class App extends Component {
-
-    fs = new FirebaseService();
-
-    state = {
-        alert: false
-    };
 
     nav = {
         si: { to: '/sign-in', label: 'Sign In' },
@@ -25,7 +20,7 @@ export default class App extends Component {
     };
 
     componentDidMount() {
-
+        alert('info', 'test');
     }
 
     render() {
@@ -33,22 +28,23 @@ export default class App extends Component {
         return (
             <Router>
                 <div className="app">
-                        <header>
-                            <Route path="/" exact component={ () =>
-                                <AppHeader buttons={[this.nav.si,this.nav.su]}/>}/>
-                            <Route path="/sign-in" component={ () =>
-                                <AppHeader buttons={[this.nav.h,this.nav.su]}/>}/>
-                            <Route path='/sign-up' component={ () =>
-                                <AppHeader buttons={[this.nav.h,this.nav.si]}/>}/>
-                        </header>
+                    <header>
+                        <Route path="/" exact component={ () =>
+                            <AppHeader buttons={[this.nav.si,this.nav.su]}/>}/>
+                        <Route path="/sign-in" component={ () =>
+                            <AppHeader buttons={[this.nav.h,this.nav.su]}/>}/>
+                        <Route path='/sign-up' component={ () =>
+                            <AppHeader buttons={[this.nav.h,this.nav.si]}/>}/>
+                    </header>
 
-                        <main className="main mx-auto">
-                            <Route exact path="/" component={ WelcomeScreen }/>
-                            <Route path="/sign-up" component={ SignUpForm } />
-                            <Route path="/sign-in" component={ SignInForm } />
-                        </main>
+                    <main className="main mx-auto">
+                        <Route exact path="/" component={ WelcomeScreen }/>
+                        <Route path="/sign-up" component={ SignUpForm } />
+                        <Route path="/sign-in" component={ SignInForm } />
+                    </main>
 
-                        <Route exact path="/" component={ AppFooter }/>
+                    <Route exact path="/" component={ AppFooter }/>
+                    <ToastsContainer store={ ToastsStore }/>
                 </div>
             </Router>
         );

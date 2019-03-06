@@ -21,7 +21,7 @@ const _conf = {
             recaptchaParameters: {
                 type: 'image',
                 size: 'invisible',
-                badge: 'inline'
+                badge: 'bottomright'
             },
             defaultCountry: 'UA',
             loginHint: '+380112233444',
