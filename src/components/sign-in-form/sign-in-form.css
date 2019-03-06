@@ -1,3 +1,194 @@
 #firebase-sign-in {
     margin: auto;
 }
+
+#firebase-sign-in {
+    padding: 10px 10px 10px 10px;
+    background: rgba(255, 255, 255, 0);
+    border: solid 2px rgba(255, 255, 255, 0.125);
+    border-radius: 5px;
+    color: inherit;
+}
+
+/*H1*/
+.firebaseui-title {
+}
+/*country selector*/
+.firebaseui-id-country-selector {
+    float: left;
+    margin-top: 30px;
+    margin-right: 5px;
+    background: rgba(255, 255, 255, 0);
+    border: solid 2px rgba(255, 255, 255, 0.125);
+    border-radius: 5px;
+    color: inherit;
+}
+/*Label to numb*/
+.firebaseui-label {
+    color: #ffffff;
+    display: block;
+    font-family: Raleway, Helvetica, sans-serif;
+    font-size: 0.8em;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    margin: 0 0 0.7em 0;
+    text-transform: uppercase;
+}
+/*numb field*/
+.firebaseui-input {
+    background: rgba(255, 255, 255, 0);
+    border: solid 2px rgba(255, 255, 255, 0.125);
+    border-radius: 5px;
+    color: inherit;
+    display: block;
+    outline: 0;
+    padding: 0 1em;
+    text-decoration: none;
+    /*width: 100%;*/
+    height: 2.75em;
+}
+
+/*dialog window*/
+.firebaseui-dialog {
+    margin-right: 25%;
+    background: rgba(255, 255, 255, 0.3);
+    border: solid 2px rgba(255, 255, 255, 0.125);
+    border-radius: 5px;
+    color: inherit;
+}
+/*dialog window element*/
+.firebaseui-id-list-box-dialog-button {
+    margin-left: 3px;
+    background: rgba(255, 255, 255, 0.3);
+    border: solid 2px rgba(255, 255, 255, 0.125);
+    border-radius: 5px;
+    color: inherit;
+}
+
+/*button submit*/
+.firebaseui-id-submit {
+    margin-top: 10px;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -moz-transition: background-color 0.2s ease-in-out;
+    -webkit-transition: background-color 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out;
+    background-color: transparent;
+    border-radius: 5px;
+    border: 0;
+    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.125);
+    color: #ffffff !important;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Raleway, Helvetica, sans-serif;
+    font-size: 0.8em;
+    font-weight: 700;
+    height: 3.75em;
+    letter-spacing: 0.1em;
+    line-height: 3.75em;
+    padding: 0 2.25em;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+/*text after*/
+.firebaseui-tos {
+    list-style: none;
+    display: inline-block;
+    margin: 2.5em 0 0 0;
+    padding: 0 0 0 3.25em;
+    position: relative;
+}
+
+.firebaseui-tos a {
+    text-decoration: underline;
+    color: white;
+}
+
+.firebaseui-tos a:hover {
+    color: #4c5c96;
+    text-decoration: none;
+}
+
+.firebaseui-tos a:active {
+    text-decoration: underline;
+    color: #4f62a8;
+}
+
+/*secondary block*/
+
+/*button in block*/
+.firebaseui-id-phone-confirmation-code input [type = 'number']{
+    -webkit-appearance: none;
+    opacity: 0;
+    visibility: hidden;
+    margin: 0;
+}
+
+    /*secondary link button Cancel*/
+.firebaseui-id-secondary-link {
+    margin-right: 10px;
+    margin-top: 10px;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -moz-transition: background-color 0.2s ease-in-out;
+    -webkit-transition: background-color 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out;
+    background-color: transparent;
+    border-radius: 5px;
+    border: 0;
+    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.125);
+    color: #ffffff !important;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Raleway, Helvetica, sans-serif;
+    font-size: 0.8em;
+    font-weight: 700;
+    height: 3.75em;
+    letter-spacing: 0.1em;
+    line-height: 3.75em;
+    padding: 0 2.25em;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+
+.firebaseui-link {
+    text-decoration: underline;
+    color: white;
+}
+
+.firebaseui-link:hover {
+    color: #4c5c96;
+    text-decoration: none;
+}
+
+.firebaseui-link:active {
+    text-decoration: underline;
+    color: #4f62a8;
+}
+
+/*Secondary block links*/
+.firebaseui-tos-list {
+    margin-left: 3px;
+    padding: 0;
+}
+
+.firebaseui-tos-list {
+    display: flex;
+}
+
+.firebaseui-inline-list-item {
+    margin-right: 5px;
+}
+
+.firebaseui-id-resend-countdown {
+    margin-right: 5px;
+}
+
+/*Alerts block*/
+
