@@ -28,13 +28,14 @@ export default class App extends Component {
 
     getUsers = () => {
         const fs = new FirebaseService();
-        fs.getAllUsers()
+        return fs.getAllUsers()
             .then((users) => {
                 return users;
-            })
+            });
     };
 
     render() {
+        console.log(this.getUsers());
 
         return (
             <Router>
