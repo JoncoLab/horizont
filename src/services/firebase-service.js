@@ -3,7 +3,7 @@ import 'firebase/firestore';
 import 'firebase/auth';
 import * as firebaseui from 'firebaseui';
 import React, { Fragment } from "react";
-import alert from 'alert';
+import * as  alert from 'alert';
 
 const _conf = {
     app: {
