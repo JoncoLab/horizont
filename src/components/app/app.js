@@ -9,7 +9,7 @@ import SignUpForm from "../sign-up-form";
 import SignInForm from "../sign-in-form";
 import alert from '../../services/alert';
 
-import {ToastsContainer, ToastsStore} from 'react-toasts';
+import { ToastsContainer, ToastsStore } from 'react-toasts';
 
 export default class App extends Component {
 
@@ -19,9 +19,9 @@ export default class App extends Component {
         h: { to: '/', label: 'Home' }
     };
 
-    componentDidMount() {
-        alert('info', 'test');
-    }
+    componentDidCatch(error) {
+        alert('error', error);
+    };
 
     render() {
 
@@ -30,21 +30,21 @@ export default class App extends Component {
                 <div className="app">
                     <header>
                         <Route path="/" exact component={ () =>
-                            <AppHeader buttons={[this.nav.si,this.nav.su]}/>}/>
+                            <AppHeader buttons={[this.nav.si,this.nav.su]}/>} />
                         <Route path="/sign-in" component={ () =>
-                            <AppHeader buttons={[this.nav.h,this.nav.su]}/>}/>
+                            <AppHeader buttons={[this.nav.h,this.nav.su]}/>} />
                         <Route path='/sign-up' component={ () =>
-                            <AppHeader buttons={[this.nav.h,this.nav.si]}/>}/>
+                            <AppHeader buttons={[this.nav.h,this.nav.si]}/>} />
                     </header>
 
                     <main className="main mx-auto">
-                        <Route exact path="/" component={ WelcomeScreen }/>
+                        <Route exact path="/" component={ WelcomeScreen } />
                         <Route path="/sign-up" component={ SignUpForm } />
                         <Route path="/sign-in" component={ SignInForm } />
                     </main>
 
-                    <Route exact path="/" component={ AppFooter }/>
-                    <ToastsContainer store={ ToastsStore }/>
+                    <Route exact path="/" component={ AppFooter } />
+                    <ToastsContainer store={ ToastsStore } />
                 </div>
             </Router>
         );
