@@ -57,7 +57,7 @@ export default class App extends Component {
                             <AppHeader buttons={[this.nav.h,this.nav.si]}/>} />
                     </header>
 
-                    <main className="main mx-auto">
+                    <main className="main mx-auto mt-2">
                         <Route exact path="/" component={ WelcomeScreen } />
                         <Route path="/sign-up" component={ SignUpForm } />
                         <Route path="/sign-in" component={ SignInForm } />
