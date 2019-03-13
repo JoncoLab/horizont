@@ -3,22 +3,37 @@ import './users-table.css';
 
 //    need DB connection!!!
 
-const UserList = ({name, profile}) => {
-    return <span>{name},{profile}</span>
-};
-
 const UsersTable = ({allUsers}) => {
-    // const users = allUsers.map((user) => {
-    //     const {id, ...userProps} = user;
-    //     return (
-    //         <li key={id}>
-    //             <UserList {...userProps}/>
-    //         </li>
-    //     )
-    // });
-    console.log(allUsers);
     return (
-        <div>
+        <div className="table-wrapper">
+            <table className="alt">
+                <thead>
+                <tr>
+                    <th>Ім'я</th>
+                    <th>Фамілія</th>
+                    <th>Побатькові</th>
+                    <th>Проффеія</th>
+                    <th>Телефон</th>
+                    <th>Електронна адреса</th>
+                    <th>Адреса</th>
+                    <th>Наявність документів</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {allUsers.map(({id, first_name, last_name, middle_name, profession, tel, email, address, doc}) => (
+                        <tr key={id}>
+                            <td><span>{first_name}</span></td>
+                            <td><span>{last_name}</span></td>
+                            <td><span>{middle_name}</span></td>
+                            <td><span>{profession}</span></td>
+                            <td><span>{tel}</span></td>
+                            <td><span>{email}</span></td>
+                            <td><span>{address}</span></td>
+                            <td><span>{doc ? "Є в наявності" : "Відсутні"}</span></td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         </div>
     );
 };
