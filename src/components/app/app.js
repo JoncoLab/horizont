@@ -15,6 +15,10 @@ import UsersTable from "../users-table";
 
 export default class App extends Component {
 
+    state = {
+        allUsers: []
+    };
+
     nav = {
         si: { to: '/sign-in', label: 'Sign In' },
         su: { to: '/sign-up', label: 'Sign Up' },
@@ -26,17 +30,21 @@ export default class App extends Component {
         alert('error', error);
     };
 
+    componentDidMount() {
+        this.getUsers();
+    }
+
     getUsers = () => {
         const fs = new FirebaseService();
-        return fs.getAllUsers()
+        fs.getAllUsers()
             .then((users) => {
-                return users;
+                this.setState({
+                    allUsers: users
+                });
             });
     };
 
     render() {
-        console.log(this.getUsers());
-
         return (
             <Router>
                 <div className="app">
@@ -54,7 +62,7 @@ export default class App extends Component {
                         <Route path="/sign-up" component={ SignUpForm } />
                         <Route path="/sign-in" component={ SignInForm } />
                         <Route path="/admin" component={ () =>
-                            <UsersTable allUsers={ this.getUsers() }/>} />
+                            <UsersTable allUsers={ this.state.allUsers }/>} />
                     </main>
 
                     <Route exact path="/" component={ AppFooter } />
