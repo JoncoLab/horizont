@@ -8,18 +8,18 @@ const UserList = ({name, profile}) => {
 };
 
 const UsersTable = ({allUsers}) => {
-    const users = allUsers.map((user) => {
-        const {id, ...userProps} = user;
-        return (
-            <li key={id}>
-                <UserList {...userProps}/>
-            </li>
-        )
-    });
+    // const users = allUsers.map((user) => {
+    //     const {id, ...userProps} = user;
+    //     return (
+    //         <li key={id}>
+    //             <UserList {...userProps}/>
+    //         </li>
+    //     )
+    // });
+    console.log(allUsers);
     return (
-        <ul>
-            {users}
-        </ul>
+        <div>
+        </div>
     );
 };
 

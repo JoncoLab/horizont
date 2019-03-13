@@ -27,7 +27,7 @@ const footerForm = () => (
 
                     <div className="form-group">
                         <label htmlFor="Textarea">ВАШЕ ПОВІДОМЛЕННЯ</label>
-                        <textarea className="form-control" id="Textarea" rows="3">{""}</textarea>
+                        <textarea className="form-control" id="Textarea" rows="3" defaultValue=""/>
                     </div>
 
                     <button type="submit" className="btn btn-primary">НАДІСЛАТИ</button>
