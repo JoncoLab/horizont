@@ -1,3 +1,9 @@
+.footer-border-top {
+    padding: 10px;
+    width: 90%;
+    border-top: 2px solid rgba(255, 255, 255, .50);
+}
+
 #table label {
     color: #ffffff;
     display: block;
@@ -106,6 +112,10 @@
     color: white;
 }
 
+.copyright {
+    margin: 0;
+}
+
 .copyright li {
     list-style: none;
     display: inline-block;
@@ -115,5 +125,8 @@
 }
 
 .copyright {
-    margin-bottom: 100px;
+    margin: auto;
+    width: 90%;
+    border-top: 2px solid rgba(255, 255, 255, .50);
+    padding-bottom: 100px;
 }
