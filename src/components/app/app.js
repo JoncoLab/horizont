@@ -27,7 +27,7 @@ export default class App extends Component {
     };
 
     componentDidCatch(error) {
-        alert('error', error);
+        alert(error, 'error');
     };
 
     componentDidMount() {
@@ -50,7 +50,7 @@ export default class App extends Component {
                 <div className="app">
                     <header>
                         <Route path="/" exact component={ () =>
-                            <AppHeader buttons={[this.nav.si,this.nav.su,this.nav.a]}/>} />
+                            <AppHeader buttons={[this.nav.si,this.nav.su]}/>} />
                         <Route path="/sign-in" component={ () =>
                             <AppHeader buttons={[this.nav.h,this.nav.su]}/>} />
                         <Route path='/sign-up' component={ () =>
