@@ -1,17 +1,13 @@
 import React from 'react';
 import './users-table.css';
 
-const UsersTable = () => <form>
-    <caption>UploadFiles</caption>
-</form>;
-
 //    need DB connection!!!
 
 const UserList = ({name, profile}) => {
     return <span>{name},{profile}</span>
 };
 
-const AllUsers = ({allUsers}) => {
+const UsersTable = ({allUsers}) => {
     const users = allUsers.map((user) => {
         const {id, ...userProps} = user;
         return (
