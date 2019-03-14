@@ -56,7 +56,9 @@ export default class FirebaseService {
      * Добавляет польхователя в Firestore
      * @param user {Object}
      */
+
     addUser = async user => {
+
         return await this._users.add(user)
             .catch((reason) => {
                 alert(reason);

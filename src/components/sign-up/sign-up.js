@@ -33,41 +33,49 @@ class SignUp extends Component {
         event.preventDefault();
         this.setState({ preloader: true });
 
-        // Создание списка имён-значений полученных из формы
-        const values = [
-            ...this.fields.map(({ name }) => (
-                { name, value: this.getInput(name) }
-            ))
-        ];
-        values.push({ name: 'doc', value: this.getInput('doc') });
+        this.fs.getAllUsers()
+            .then((users) => {
+                if (!users.find((user) => user.tel === this.getInput('tel'))) {
+                    // Создание списка имён-значений полученных из формы
+                    const values = [
+                        ...this.fields.map(({ name }) => (
+                            { name, value: this.getInput(name) }
+                        ))
+                    ];
+                    values.push({ name: 'doc', value: this.getInput('doc') });
 
-        // Присвоение имён-значений объекту newUser
-        let newUser = {};
-        values.forEach((value) => {
-            newUser = {
-                ...newUser,
-                [value.name]: value.value
-            };
-        });
+                    // Присвоение имён-значений объекту newUser
+                    let newUser = {};
+                    values.forEach((value) => {
+                        newUser = {
+                            ...newUser,
+                            [value.name]: value.value
+                        };
+                    });
 
-        // Добавление нового пользователя в базу даных
-        this.fs.addUser(newUser).then(() => {
-            this.setState({
-                preloader: false,
-                signedUp: true
+                    // Добавление нового пользователя в базу даных
+                    this.fs.addUser(newUser)
+                        .then(() => {
+                            this.setState({
+                                signedUp: true
+                            });
+                            alert('Успішна реєстрація!');
+                        });
+                } else {
+                    alert('Користувача з таким номером телефону вже зареєстровано!','warning');
+                }
+            })
+            .finally(() => {
+                this.setState({ preloader: false });
             });
-            alert('User successfully added!');
-        });
     };
-
-
 
     render() {
         // Если регистрация прошла успешно, то отображается заглушка.
         const content = this.state.signedUp ?
             <SignedUpScreen /> :
             <Form onSubmit={ this.handleSubmit }
-                  fields={ this.fields }/>;
+                  fields={ this.fields } />;
         const display = this.state.preloader ? <Preloader/> : content;
 
         return (

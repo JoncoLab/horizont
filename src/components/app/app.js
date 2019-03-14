@@ -53,13 +53,16 @@ export default class App extends Component {
                             <AppHeader buttons={[this.nav.si,this.nav.su]}/>} />
                         <Route path="/sign-in" component={ () =>
                             <AppHeader buttons={[this.nav.h,this.nav.su]}/>} />
-                        <Route path='/sign-up' component={ () =>
+                        <Route path="/sign-up" component={ () =>
                             <AppHeader buttons={[this.nav.h,this.nav.si]}/>} />
+                        <Route path="/admin" component={ () =>
+                            <AppHeader buttons={[]}/>} />
                     </header>
 
                     <main className="main mx-auto mt-2">
                         <Route exact path="/" component={ WelcomeScreen } />
-                        <Route path="/sign-up" component={ SignUp } />
+                        <Route path="/sign-up" component={ () =>
+                            <SignUp allUsers={ this.state.allUsers }/>} />
                         <Route path="/sign-in" component={ SignInForm } />
                         <Route path="/admin" component={ () =>
                             <UsersTable allUsers={ this.state.allUsers }/>} />
