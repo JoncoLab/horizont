@@ -8,6 +8,7 @@ import WelcomeScreen from "../welcome-screen";
 import SignUp from "../sign-up";
 import SignInForm from "../sign-in-form";
 import alert from '../../services/alert';
+import UserPage from "../user-page";
 
 import { ToastsContainer, ToastsStore } from 'react-toasts';
 import FirebaseService from "../../services/firebase-service";
@@ -23,7 +24,8 @@ export default class App extends Component {
         si: { to: '/sign-in', label: 'Увійти' },
         su: { to: '/sign-up', label: 'Зареєструватися' },
         h: { to: '/', label: 'Домашня сторінка' },
-        a: { to: '/admin', label: 'Admin' }
+        a: { to: '/admin', label: 'Admin' },
+        lo: { to: '/log-out', label: 'Вийти' }
     };
 
     componentDidCatch(error) {
@@ -55,16 +57,19 @@ export default class App extends Component {
                             <AppHeader buttons={[this.nav.h,this.nav.su]}/>} />
                         <Route path="/sign-up" component={ () =>
                             <AppHeader buttons={[this.nav.h,this.nav.si]}/>} />
+                        <Route path="/user-page" component={ () =>
+                            <AppHeader buttons={[this.nav.lo]}/>}/>
                         <Route path="/admin" component={ () =>
                             <AppHeader buttons={[]}/>} />
                     </header>
 
                     <main className="main mx-auto mt-2">
                         <Route exact path="/" component={ WelcomeScreen } />
-                        <Route path="/sign-in" component={ SignInForm }/>
+                        <Route path="/sign-in" component={ SignInForm } />
                         <Route path="/sign-up" component={ SignUp } />
+                        <Route path="/user-page" component={ UserPage } />
                         <Route path="/admin" component={ () =>
-                            <UsersTable allUsers={ this.state.allUsers }/>} />
+                            <UsersTable allUsers={ this.state.allUsers } /> } />
                     </main>
 
                     <Route exact path="/" component={ AppFooter } />
