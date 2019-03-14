@@ -116,6 +116,16 @@
     margin: 0;
 }
 
+.copyright a {
+    text-decoration: none;
+    color: white;
+}
+
+.copyright a:hover {
+    color: #4c5c96;
+    text-decoration: none;
+}
+
 .copyright li {
     list-style: none;
     display: inline-block;
