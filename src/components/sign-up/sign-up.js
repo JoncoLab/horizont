@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import './sign-up.css';
 import Preloader from "../preloader";
-import FirebaseService from "../../services/firebase-service";
-import alert from '../../services/alert';
+import { FirebaseService, alert } from "../../services";
 import SignedUpScreen from './sign-up-screen';
 import Form from "./form";
 

@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 
-const InputField = ({ name, label, type = 'text', required = true, title = null, noBar = false, children }) => {
+const InputField = ({ name, label, type, required, title, noBar, children }) => {
     const defaultChildren = (
         <Fragment>
             <input type={ type }
@@ -19,6 +20,22 @@ const InputField = ({ name, label, type = 'text', required = true, title = null,
             </label>
         </div>
     )
+};
+
+InputField.defaultProps = {
+    required: true,
+    title: '',
+    noBar: false,
+    type: 'text'
+};
+
+InputField.propTypes = {
+    name: PropTypes.string().isRequired,
+    label: PropTypes.string().isRequired,
+    type: PropTypes.string(),
+    required: PropTypes.bool(),
+    title: PropTypes.string(),
+    noBar: PropTypes.bool()
 };
 
 export default InputField;

@@ -1,5 +1,6 @@
 import InputField from "../input-field";
 import React from "react";
+import PropTypes from 'prop-types';
 
 const Form = ({ onSubmit, fields }) => (
     <form className="sign-up-form" onSubmit={ onSubmit } method="post">
@@ -20,5 +21,17 @@ const Form = ({ onSubmit, fields }) => (
         </div>
     </form>
 );
+
+Form.propTypes = {
+    onSubmit: PropTypes.func().isRequired,
+    fields: PropTypes.arrayOf(PropTypes.shape({
+        name: PropTypes.string().isRequired,
+        label: PropTypes.string().isRequired,
+        type: PropTypes.string(),
+        required: PropTypes.bool(),
+        title: PropTypes.string(),
+        noBar: PropTypes.bool()
+    }))
+};
 
 export default Form;

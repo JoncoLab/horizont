@@ -1,6 +1,7 @@
 import React from 'react';
 import './app-header.css';
 import { Link } from "react-router-dom";
+import PropTypes from 'prop-types';
 
 const AppHeader = ({ buttons }) => (
     <nav className="navbar navbar-expand-lg navbar-light bg-light" id="header-nav-bar">
@@ -23,5 +24,18 @@ const AppHeader = ({ buttons }) => (
         </div>
     </nav>
 );
+
+AppHeader.defaultProps = {
+    buttons: []
+};
+
+AppHeader.propTypes = {
+    buttons: PropTypes.arrayOf(
+        PropTypes.shape({
+            to: PropTypes.string().isRequired,
+            label: PropTypes.string().isRequired
+        })
+    )
+};
 
 export default AppHeader;
