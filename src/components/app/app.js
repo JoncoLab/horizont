@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import AppHeader from "../app-header";
 import AppFooter from "../app-footer";
 import WelcomeScreen from "../welcome-screen";
-import SignUpForm from "../sign-up-form";
+import SignUp from "../sign-up-form";
 import SignInForm from "../sign-in-form";
 import alert from '../../services/alert';
 
@@ -59,7 +59,7 @@ export default class App extends Component {
 
                     <main className="main mx-auto mt-2">
                         <Route exact path="/" component={ WelcomeScreen } />
-                        <Route path="/sign-up" component={ SignUpForm } />
+                        <Route path="/sign-up" component={ SignUp } />
                         <Route path="/sign-in" component={ SignInForm } />
                         <Route path="/admin" component={ () =>
                             <UsersTable allUsers={ this.state.allUsers }/>} />
