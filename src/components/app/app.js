@@ -61,9 +61,8 @@ export default class App extends Component {
 
                     <main className="main mx-auto mt-2">
                         <Route exact path="/" component={ WelcomeScreen } />
-                        <Route path="/sign-up" component={ () =>
-                            <SignUp allUsers={ this.state.allUsers }/>} />
-                        <Route path="/sign-in" component={ SignInForm } />
+                        <Route path="/sign-in" component={ SignInForm }/>
+                        <Route path="/sign-up" component={ SignUp } />
                         <Route path="/admin" component={ () =>
                             <UsersTable allUsers={ this.state.allUsers }/>} />
                     </main>
