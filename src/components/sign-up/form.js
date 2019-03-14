@@ -7,13 +7,13 @@ const Form = ({ onSubmit, fields }) => (
             fields.map((field) =>
                 <Field { ...field } key={ field.name } />)
         }
-        <Field label="Hui">
-            <input type="radio" name="doc" value="true" required/>
-            <span>У мене є закордонний паспорт</span>
+        <Field label="Наявність документів">
+            <input id="docTrue" type="radio" name="doc" value="true" defaultChecked required/>
+            <label htmlFor="docTrue">У мене є закордонний паспорт</label>
         </Field>
         <Field>
-            <input type="radio" name="doc" value="false" required/>
-            <span>У мене немає закордонного паспорту</span>
+            <input id="docFalse" type="radio" name="doc" value="false" required/>
+            <label htmlFor="docFalse">У мене немає закордонного паспорту</label>
         </Field>
         <div className="button-container">
             <input type="submit" name="submit" value="Зареєструватися" className="btn"/>
