@@ -1,4 +1,4 @@
-import Field from "./sign-up";
+import Field from "./field";
 import React from "react";
 
 const Form = ({ onSubmit, fields }) => (

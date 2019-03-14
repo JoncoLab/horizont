@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import AppHeader from "../app-header";
 import AppFooter from "../app-footer";
 import WelcomeScreen from "../welcome-screen";
-import SignUp from "../sign-up-form";
+import SignUp from "../sign-up";
 import SignInForm from "../sign-in-form";
 import alert from '../../services/alert';
 
