@@ -1,0 +1,23 @@
+.group {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column-reverse;
+    width: 40%;
+}
+
+.sign-up-form input {
+    background: rgba(255, 255, 255, 0);
+    border: solid 2px rgba(255, 255, 255, 0.125);
+    border-radius: 5px;
+    color: inherit;
+    display: block;
+    outline: 0;
+    padding: 0 1em;
+    text-decoration: none;
+    width: 100%;
+}
+
+.sign-up-form input:focus {
+    border: solid 2px #4c5c96;
+}
+
