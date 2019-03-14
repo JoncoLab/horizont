@@ -33,16 +33,20 @@ class SignUp extends Component {
         event.preventDefault();
         this.setState({ preloader: true });
 
+        // Создание списка имён-значений полученных из формы
+        const values = [
+            ...this.fields.map(({ name }) => (
+                { name, value: this.getInput(name) }
+            ))
+        ];
+        values.push({ name: 'doc', value: this.getInput('doc') });
+
         this.fs.getAllUsers()
             .then((users) => {
-                if (users.find((user) => user.tel === this.getInput('tel')) === undefined) {
-                    // Создание списка имён-значений полученных из формы
-                    const values = [
-                        ...this.fields.map(({ name }) => (
-                            { name, value: this.getInput(name) }
-                        ))
-                    ];
-                    values.push({ name: 'doc', value: this.getInput('doc') });
+
+                if (users.find((user) =>
+                    values.find((v) =>
+                        v.name === 'tel').value === user.tel) === undefined) {
 
                     // Присвоение имён-значений объекту newUser
                     let newUser = {};
