@@ -59,7 +59,7 @@ class SignUpForm extends Component {
     render() {
 
         return (
-            <form onSubmit={ this.handleSubmit } method="post">
+            <form className="sign-up-form" onSubmit={ this.handleSubmit } method="post">
                 {
                     this.fields.map((field) =>
                         <Field { ...field } key={ field.name } />)
