@@ -35,7 +35,7 @@ class SignUp extends Component {
 
         this.fs.getAllUsers()
             .then((users) => {
-                if (!users.find((user) => user.tel === this.getInput('tel'))) {
+                if (users.find((user) => user.tel === this.getInput('tel')) === undefined) {
                     // Создание списка имён-значений полученных из формы
                     const values = [
                         ...this.fields.map(({ name }) => (
