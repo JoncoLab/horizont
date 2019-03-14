@@ -1,6 +1,8 @@
 import React, {Component, Fragment} from 'react';
 import './sign-up-form.css';
 import Preloader from "../preloader";
+import FirebaseService from "../../services/firebase-service";
+import alert from '../../services/alert';
 
 class SignUpForm extends Component {
 
@@ -15,23 +17,43 @@ class SignUpForm extends Component {
         { name: 'email', label: 'Email', type: 'email', required: false },
         { name: 'tel', label: 'Номер мобільного', type: 'tel', title: '+380112222222' },
         { name: 'profession', label: 'Ваша професія' },
-        { name: 'location', label: 'Ваша адреса' },
+        { name: 'address', label: 'Ваша адреса' },
         { name: 'birthday', label: 'Дата народження', type: 'date' },
         { name: 'soft_skills', label: 'Перерахуйте свої корисні навички та вміння через кому' }
     ];
 
     getInput = name => document.getElementsByName(name)[0].value;
 
+    fs = new FirebaseService();
+
     handleSubmit = event => {
         event.preventDefault();
         this.setState({ preloader: true });
+
+        // Создание списка имён-значений полученных из формы
         const values = [
             ...this.fields.map(({ name }) => (
                 { name, value: this.getInput(name) }
             ))
         ];
         values.push({ name: 'doc', value: this.getInput('doc') });
-        console.log(values);
+
+        // Присвоение имён-значений объекту newUser
+        let newUser = {};
+        values.forEach((value) => {
+            newUser = {
+                ...newUser,
+                [value.name]: value.value
+            };
+        });
+
+        // Добавление нового пользователя в базу даных
+        this.fs.addUser(newUser).then(() => {
+            this.setState({
+                preloader: false
+            });
+            alert('User successfully added!');
+        });
     };
 
     render() {
