@@ -44,8 +44,8 @@
     top: 14px;
     left: 14px;
     border-radius: 50%;
-    box-shadow: 1px 3px 0 2px #2d4465,
-                -1px 3px 2px 0 rgba(45, 68, 101, 0.51);
+    box-shadow: 0 3px 0 1px white,
+                0 0 0 1px #4c5c96 inset;
     -webkit-transform-origin: 36px 38px;
     transform-origin: 36px 38px;
 }

@@ -6,7 +6,7 @@ import AppHeader from "../app-header";
 import AppFooter from "../app-footer";
 import WelcomeScreen from "../welcome-screen";
 import SignUp from "../sign-up";
-import SignInForm from "../sign-in-form";
+import SignIn from "../sign-in";
 import alert from '../../services/alert';
 import UserPage from "../user-page";
 
@@ -65,7 +65,7 @@ export default class App extends Component {
 
                     <main className="main mx-auto mt-2">
                         <Route exact path="/" component={ WelcomeScreen } />
-                        <Route path="/sign-in" component={ SignInForm } />
+                        <Route path="/sign-in" component={ SignIn } />
                         <Route path="/sign-up" component={ SignUp } />
                         <Route path="/user-page" component={ UserPage } />
                         <Route path="/admin" component={ () =>

@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 
-const Field = ({ name, label, type = 'text', required = true, title = null, noBar = false, children }) => {
+const InputField = ({ name, label, type = 'text', required = true, title = null, noBar = false, children }) => {
     const defaultChildren = (
         <Fragment>
             <input type={ type }
@@ -21,4 +21,4 @@ const Field = ({ name, label, type = 'text', required = true, title = null, noBa
     )
 };
 
-export default Field;
+export default InputField;
