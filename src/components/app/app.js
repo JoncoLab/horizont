@@ -20,9 +20,9 @@ export default class App extends Component {
     };
 
     nav = {
-        si: { to: '/sign-in', label: 'Sign In' },
-        su: { to: '/sign-up', label: 'Sign Up' },
-        h: { to: '/', label: 'Home' },
+        si: { to: '/sign-in', label: 'Увійти' },
+        su: { to: '/sign-up', label: 'Зареєструватися' },
+        h: { to: '/', label: 'Домашня сторінка' },
         a: { to: '/admin', label: 'Admin' }
     };
 
