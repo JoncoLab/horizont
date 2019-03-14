@@ -1,8 +1,6 @@
 import React from 'react';
 import './users-table.css';
 
-//    need DB connection!!!
-
 const UsersTable = ({allUsers}) => {
     return (
         <div className="table-wrapper">
