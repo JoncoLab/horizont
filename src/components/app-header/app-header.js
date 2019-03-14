@@ -15,7 +15,7 @@ const AppHeader = ({ buttons }) => (
                 {
                     buttons.map(({ to, label }, i) => (
                         <li key={ label.toLowerCase().replace(/ /g, '') } className="nav-item m-2">
-                            <Link className={`${ i < buttons.length - 1 ? 'secondary' : 'primary'}`} to={ to }>{ label }</Link>
+                            <Link className={`link ${ i < buttons.length - 1 ? 'secondary' : 'primary'}`} to={ to }>{ label }</Link>
                         </li>
                     ))
                 }
