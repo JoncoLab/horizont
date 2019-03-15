@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
+import './input-field.css';
 
 const InputField = ({ name, label, type, required, title, noBar, children }) => {
     const defaultChildren = (
