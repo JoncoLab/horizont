@@ -14,13 +14,14 @@ export default class FooterForm extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        this.setState({ preloader: true });
 
         const newMessage = {
-            senderName: this.setState('name'),
+            senderName: this.getInput('name'),
             senderEmail: this.getInput('email'),
             message: this.getInput('message')
         };
+
+        this.setState({ preloader: true });
 
         this.fs.addMessage(newMessage)
             .then(() => {
@@ -37,7 +38,7 @@ export default class FooterForm extends Component {
     render() {
         const form = (
             <div className="row">
-                <form method="post" className="col-md" id="table" onSubmit={ this.handleSubmit }>
+                <form method="post" className="col-md" id="table" onSubmit={ (event) => this.handleSubmit(event) }>
                     <fieldset>
                         <div className="form-group">
                             <label htmlFor="name">ІМ'Я</label>
