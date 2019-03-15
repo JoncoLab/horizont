@@ -1,16 +1,6 @@
 // import React, {Component} from 'react';
 // import './user-page.css';
-//
-//
-// //Нужно:
-// // 1) Перенести стили Field в отдельно созданный файл
-// // 2) Вручную написать процедуру логина
-// // 3) Соответсвенно вручную создать форму логина
-// // 4) Переписать стили в sign-in.css
-// // 5) ПРИМЕНИТЬ !!!HOC!!! ДЛЯ КОМПОНЕНТОВ КОТОРЫЕ ЮЗАЮТ !!!FIREBASE!!!
-// // 6) Переписать UsersTable как использующий FB
-// // 7) Переписать структуру Footer'a
-//
+
 // export default class UserPage extends Component {
 //     render() {
 //         return (

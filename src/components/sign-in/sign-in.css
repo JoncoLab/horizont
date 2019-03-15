@@ -4,6 +4,15 @@
     height: inherit;
 }
 
+.sign-in-form {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.sign-in-form input[type="submit"] {
+    margin-top: 20px;
+}
+
 #firebase-sign-in {
     padding: 10px 10px 10px 10px;
     background: rgba(255, 255, 255, .1);
@@ -15,6 +24,7 @@
 /*H1*/
 .firebaseui-title {
 }
+
 /*country selector*/
 .firebaseui-id-country-selector {
     float: left;
@@ -25,6 +35,7 @@
     border-radius: 5px;
     color: inherit;
 }
+
 /*Label to numb*/
 .firebaseui-label {
     color: #ffffff;
@@ -36,6 +47,7 @@
     margin: 0 0 0.7em 0;
     text-transform: uppercase;
 }
+
 /*numb field*/
 .firebaseui-input {
     background: rgba(255, 255, 255, 0);
@@ -58,6 +70,7 @@
     border-radius: 5px;
     color: inherit;
 }
+
 /*dialog window element*/
 .firebaseui-id-list-box-dialog-button {
     margin-left: 3px;
@@ -122,14 +135,14 @@
 /*secondary block*/
 
 /*button in block*/
-.firebaseui-id-phone-confirmation-code input [type = 'number']{
+.firebaseui-id-phone-confirmation-code input [type = 'number'] {
     -webkit-appearance: none;
     opacity: 0;
     visibility: hidden;
     margin: 0;
 }
 
-    /*secondary link button Cancel*/
+/*secondary link button Cancel*/
 .firebaseui-id-secondary-link {
     margin-right: 10px;
     margin-top: 10px;
