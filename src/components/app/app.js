@@ -3,7 +3,7 @@ import './app.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import AppHeader from "../app-header";
-import AppFooter from "../app-footer";
+import { AppFooter } from "../app-footer";
 import WelcomeScreen from "../welcome-screen";
 import SignUp from "../sign-up";
 import SignIn from "../sign-in";
@@ -51,7 +51,11 @@ export default class App extends Component {
                         <Route path="/admin" component={ UsersTable } />
                     </main>
 
-                    <Route exact path="/" component={ AppFooter } />
+                    <footer>
+                        <Route exact path="/" component={ () => <AppFooter title form copyright={false}/> } />
+                        <Route path="/" component={ AppFooter } />
+                    </footer>
+
                     <ToastsContainer store={ ToastsStore } />
                 </div>
             </Router>
