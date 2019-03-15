@@ -15,8 +15,18 @@ const _conf = {
     }
 };
 
+const FirebaseApp = ({ children }) => {
+    try {
+        firebase.initializeApp(_conf.app);
+    } catch (e) {
+        console.log(e);
+    }
 
-export default class FirebaseService {
+    return <Fragment>{ children }</Fragment>;
+};
+
+
+class FirebaseService {
 
     _app = firebase.app();
     _db = this._app.firestore();
@@ -43,12 +53,7 @@ export default class FirebaseService {
             .catch((reason) => alert(reason));
 }
 
-export const FirebaseApp = ({ children }) => {
-    try {
-        firebase.initializeApp(_conf.app);
-    } catch (e) {
-        console.log(e);
-    }
-
-    return <Fragment>{ children }</Fragment>;
-};
+export {
+    FirebaseService,
+    FirebaseApp
+}

@@ -1,7 +1,8 @@
 import alert from './alert';
-import FirebaseService from './firebase-service';
+import { FirebaseService, FirebaseApp } from "./firebase-service";
 
 export {
     alert,
-    FirebaseService
+    FirebaseService,
+    FirebaseApp
 }

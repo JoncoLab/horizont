@@ -15,7 +15,7 @@ import 'bootstrap';
 
 const root = (
     <FirebaseApp>
-        <App/>
+        <App />
     </FirebaseApp>
 );
 
