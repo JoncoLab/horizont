@@ -30,12 +30,12 @@ InputField.defaultProps = {
 };
 
 InputField.propTypes = {
-    name: PropTypes.string().isRequired,
-    label: PropTypes.string().isRequired,
-    type: PropTypes.string(),
-    required: PropTypes.bool(),
-    title: PropTypes.string(),
-    noBar: PropTypes.bool()
+    name: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+    type: PropTypes.string,
+    required: PropTypes.bool,
+    title: PropTypes.string,
+    noBar: PropTypes.bool
 };
 
 export default InputField;

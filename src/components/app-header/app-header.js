@@ -32,8 +32,8 @@ AppHeader.defaultProps = {
 AppHeader.propTypes = {
     buttons: PropTypes.arrayOf(
         PropTypes.shape({
-            to: PropTypes.string().isRequired,
-            label: PropTypes.string().isRequired
+            to: PropTypes.string.isRequired,
+            label: PropTypes.string.isRequired
         })
     )
 };

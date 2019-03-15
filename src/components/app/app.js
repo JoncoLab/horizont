@@ -40,7 +40,7 @@ export default class App extends Component {
                             <AppHeader buttons={[this.nav.h,this.nav.si]}/>} />
                         <Route path="/user-page" component={ () =>
                             <AppHeader buttons={[this.nav.lo]}/>}/>
-                        <Route path="/admin" component={ <AppHeader /> } />
+                        <Route path="/admin" component={ AppHeader } />
                     </header>
 
                     <main className="main mx-auto mt-2">
@@ -48,7 +48,7 @@ export default class App extends Component {
                         <Route path="/sign-in" component={ SignIn } />
                         <Route path="/sign-up" component={ SignUp } />
                         <Route path="/user-page" component={ UserPage } />
-                        <Route path="/admin" component={ UsersTable } /> } />
+                        <Route path="/admin" component={ UsersTable } />
                     </main>
 
                     <Route exact path="/" component={ AppFooter } />

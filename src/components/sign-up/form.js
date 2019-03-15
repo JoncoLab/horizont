@@ -8,11 +8,11 @@ const Form = ({ onSubmit, fields }) => (
             fields.map((field) =>
                 <InputField { ...field } key={ field.name } />)
         }
-        <InputField label="Наявність документів">
+        <InputField name="" label="Наявність документів">
             <input id="docTrue" type="radio" name="doc" value="true" defaultChecked required/>
             <label htmlFor="docTrue">У мене є закордонний паспорт</label>
         </InputField>
-        <InputField>
+        <InputField name="" label="Наявність документів">
             <input id="docFalse" type="radio" name="doc" value="false" required/>
             <label htmlFor="docFalse">У мене немає закордонного паспорту</label>
         </InputField>
@@ -23,14 +23,14 @@ const Form = ({ onSubmit, fields }) => (
 );
 
 Form.propTypes = {
-    onSubmit: PropTypes.func().isRequired,
+    onSubmit: PropTypes.func.isRequired,
     fields: PropTypes.arrayOf(PropTypes.shape({
-        name: PropTypes.string().isRequired,
-        label: PropTypes.string().isRequired,
-        type: PropTypes.string(),
-        required: PropTypes.bool(),
-        title: PropTypes.string(),
-        noBar: PropTypes.bool()
+        name: PropTypes.string.isRequired,
+        label: PropTypes.string.isRequired,
+        type: PropTypes.string,
+        required: PropTypes.bool,
+        title: PropTypes.string,
+        noBar: PropTypes.bool
     }))
 };
 
