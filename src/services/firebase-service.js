@@ -31,6 +31,7 @@ class FirebaseService {
     _app = firebase.app();
     _db = this._app.firestore();
     _users = this._db.collection('users');
+    _messages = this._db.collection('messages');
 
     /**
      * Добавляет польхователя в Firestore
@@ -39,6 +40,16 @@ class FirebaseService {
 
     addUser = async user => {
         return await this._users.add(user)
+            .catch((reason) => {
+                alert(reason);
+            });
+    };
+
+    addMessage = async message => {
+        return await this._messages.add(message)
+            .then(() => {
+                console.log(message);
+            })
             .catch((reason) => {
                 alert(reason);
             });

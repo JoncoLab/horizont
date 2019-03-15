@@ -47,7 +47,7 @@ export default class App extends Component {
                         <Route exact path="/" component={ WelcomeScreen } />
                         <Route path="/sign-in" component={ SignIn } />
                         <Route path="/sign-up" component={ SignUp } />
-                        <Route path="/user-page" component={ UserPage } />
+                        {/*<Route path="/user-page" component={ UserPage } />*/}
                         <Route path="/admin" component={ UsersTable } />
                     </main>
 
