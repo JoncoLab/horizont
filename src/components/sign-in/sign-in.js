@@ -5,20 +5,14 @@ import { FirebaseService, alert } from "../../services";
 import Form from "./form";
 
 
-import SignedUpScreen from "../sign-up/sign-up";
-
-
 export default class SignIn extends Component {
 
     state = {
         preloader: false,
-        signedIn: false
+        signedIn: false,
+        confirmation: false,
+        fields: [ { name: 'tel', label: 'Номер телефону' } ]
     };
-
-    fields = [
-        { name: 'tel', label: 'Номер телефону' },
-        { name: 'VerificationCode', label: 'Код верифікації' }
-    ];
 
     fs = new FirebaseService();
 
@@ -26,44 +20,67 @@ export default class SignIn extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        this.setState({ preloader: true });
+        this.setState({
+            preloader: true
+        });
 
-        const values = [
-            ...this.fields.map(({ name }) => (
-                {name, value: this.getInput(name) }
-            ))
-        ];
+        const tel = this.getInput('tel');
+
         this.fs.getAllUsers()
             .then((users) => {
-                if (users.find((user) =>
-                    values.find((t) =>
-                        t.name === "tel").value === user.tel) === true) {
-                    //
-                    //
-                    //
-                    //
-                    alert('Верифікація успішна');
+                if (typeof (users.find((user) => user.tel === tel)) !== 'undefined') {
+                    this.fs.signIn(tel, window.recaptchaVerifier)
+                        .then((confirmationResult) => {
+                            window.confirmationResult = confirmationResult;
+                            this.setState({
+                                confirmation: true,
+                                fields: [{name: 'VerificationCode', label: 'Код верифікації'}]
+                            })
+                        }, () => {
+                            alert('SMS not sent!', 'warning');
+                        })
+                        .finally(() => {
+                            this.setState({
+                                preloader: false
+                            })
+                        });
                 } else {
-                    window.location.replace('/');
+                    alert('Такого користувача ще не зареєстровано!', 'error');
+                    this.setState({
+                        preloader: false
+                    });
                 }
+            }, () => {
+                alert('Не вдалося з\'єднатися з базою данних', 'error');
+            });
+    };
+
+    handleConfirmation = (event) => {
+        event.preventDefault();
+        alert(window.confirmationResult);
+
+        const code = this.getInput('VerificationCode');
+        alert(code);
+
+        window.cf.confirm(code)
+            .then((result) => {
+                alert(`Signed in ${result.user}`,'success');
+            }, () => {
+                alert('Not signed in', 'error');
             })
+            .finally(() => alert('Something happened'))
     };
 
     componentDidMount() {
-        alert('Нужно: \r\n ' +
-            '2) Вручную написать процедуру логина \r\n' +
-            '3) Соответсвенно вручную создать форму логина \r\n' +
-            '4) Переписать стили в sign-in.css \r\n' +
-            '6) Переписать UsersTable как использующий FB \r\n', 'warning');
+        this.fs.initializeAuth('submit-sign-in', this.handleSubmit);
     }
 
     render() {
         // Если verification прошла успешно, то отображается заглушка.
-        const content = this.state.signedIn ?
-            <SignedUpScreen /> :
-            <Form onSubmit={ this.handleSubmit }
-                  fields={ this.fields } />;
-        const display = this.state.preloader ? <Preloader/> : content;
+        const content = <Form onSubmit={ this.state.confirmation ? this.handleConfirmation : this.handleSubmit }
+                              fields={ this.state.fields }
+                              id={ this.state.confirmation ? 'confirm-code' : 'submit-sign-in' } />;
+        const display = this.state.preloader ? <Preloader /> : content;
 
         return (
             <section className="sign-in-form m-5 mx-auto">

@@ -1,6 +1,7 @@
 import * as firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
+
 import React, { Fragment } from "react";
 import alert from './alert';
 
@@ -53,6 +54,20 @@ class FirebaseService {
             .catch((reason) => {
                 alert(reason);
             });
+    };
+
+    signIn = tel => firebase.auth().signInWithPhoneNumber(tel, window.recaptchaVerifier);
+
+    initializeAuth = RCVId => {
+
+        firebase.auth().useDeviceLanguage();
+
+        window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(RCVId, {
+            'size': 'invisible',
+            'callback': (event) => {
+                event.preventDefault();
+            }
+        });
     };
 
 
