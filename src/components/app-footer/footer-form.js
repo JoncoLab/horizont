@@ -37,33 +37,31 @@ export default class FooterForm extends Component {
 
     render() {
         const form = (
-            <div className="row">
-                <form method="post" className="col-md" id="table" onSubmit={ (event) => this.handleSubmit(event) }>
-                    <fieldset>
-                        <div className="form-group">
-                            <label htmlFor="name">ІМ'Я</label>
-                            <input type="text" className="form-control" id="name" name="name" aria-describedby="nameField"/>
-                        </div>
+            <form method="post" className="col-md" id="table" onSubmit={ (event) => this.handleSubmit(event) }>
+                <fieldset>
+                    <div className="form-group">
+                        <label htmlFor="name">ІМ'Я</label>
+                        <input type="text" className="form-control" id="name" name="name" aria-describedby="nameField"/>
+                    </div>
 
-                        <div className="form-group">
-                            <label htmlFor="email">EMAIL</label>
-                            <input type="email" className="form-control" id="email" name="email" aria-describedby="emailField"/>
-                        </div>
+                    <div className="form-group">
+                        <label htmlFor="email">EMAIL</label>
+                        <input type="email" className="form-control" id="email" name="email" aria-describedby="emailField"/>
+                    </div>
 
-                        <div className="form-group">
-                            <label htmlFor="Textarea">ВАШЕ ПОВІДОМЛЕННЯ</label>
-                            <textarea className="form-control" id="Textarea" name="message" rows="3" defaultValue=""/>
-                        </div>
+                    <div className="form-group">
+                        <label htmlFor="Textarea">ВАШЕ ПОВІДОМЛЕННЯ</label>
+                        <textarea className="form-control" id="Textarea" name="message" rows="3" defaultValue=""/>
+                    </div>
 
-                        <button type="submit" className="btn btn-primary">НАДІСЛАТИ</button>
-                    </fieldset>
-                </form>
-            </div>
+                    <button type="submit" className="btn btn-primary">НАДІСЛАТИ</button>
+                </fieldset>
+            </form>
         );
         const display = this.state.preloader ? <Preloader/> : form;
 
         return (
-            <footer className="container">
+            <footer className="row">
                 { display }
                 <ul className="col-md" id="footerUl">
                     <li className="fa-home">

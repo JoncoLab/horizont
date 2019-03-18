@@ -7,7 +7,6 @@ import { AppFooter } from "../app-footer";
 import WelcomeScreen from "../welcome-screen";
 import SignUp from "../sign-up";
 import SignIn from "../sign-in";
-import UserPage from "../user-page";
 
 import { ToastsContainer, ToastsStore } from 'react-toasts';
 import { alert } from "../../services";
