@@ -13,7 +13,7 @@ export default class UserPage extends Component {
                                 <div className="tag orange">Електрик 3-го розряду</div>
                             </div>
                             {/*User name!!!!!!!!!!!!!!!!!!*/}
-                            <div className="title">Марк Мельниченко??UserName</div>
+                            <div className="title">name</div>
 
                             <div className="description">
                                 {/*Location Address!!!!!!!!!!!!!!!!!!!!!*/}
