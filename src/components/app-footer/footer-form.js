@@ -61,7 +61,7 @@ export default class FooterForm extends Component {
         const display = this.state.preloader ? <Preloader/> : form;
 
         return (
-            <footer className="row">
+            <footer className="footer-form row">
                 { display }
                 <ul className="col-md" id="footerUl">
                     <li className="fa-home">

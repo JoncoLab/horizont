@@ -11,6 +11,7 @@ import SignIn from "../sign-in";
 import { ToastsContainer, ToastsStore } from 'react-toasts';
 import { alert } from "../../services";
 import UsersTable from "../users-table";
+import UserPage from "../user-page";
 
 export default class App extends Component {
 
@@ -46,7 +47,7 @@ export default class App extends Component {
                         <Route exact path="/" component={ WelcomeScreen } />
                         <Route path="/sign-in" component={ SignIn } />
                         <Route path="/sign-up" component={ SignUp } />
-                        {/*<Route path="/user-page" component={ UserPage } />*/}
+                        <Route path="/user-page" component={ UserPage } />
                         <Route path="/admin" component={ UsersTable } />
                     </main>
 
