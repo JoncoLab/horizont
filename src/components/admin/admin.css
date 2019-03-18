@@ -13,10 +13,12 @@ th {
 }
 
 table {
+    width: 90%;
     border-spacing: 0;
     -webkit-border-horizontal-spacing: 0;
     margin: 0 auto;
     max-width: 90%;
+    margin-bottom: 40px;
 }
 
 table tbody tr {

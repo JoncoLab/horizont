@@ -10,7 +10,7 @@ import SignIn from "../sign-in";
 
 import { ToastsContainer, ToastsStore } from 'react-toasts';
 import { alert } from "../../services";
-import UsersTable from "../users-table";
+import Admin from "../admin";
 import UserPage from "../user-page";
 
 export default class App extends Component {
@@ -48,7 +48,7 @@ export default class App extends Component {
                         <Route path="/sign-in" component={ SignIn } />
                         <Route path="/sign-up" component={ SignUp } />
                         <Route path="/user-page" component={ UserPage } />
-                        <Route path="/admin" component={ UsersTable } />
+                        <Route path="/admin" component={ Admin } />
                     </main>
 
                     <footer>

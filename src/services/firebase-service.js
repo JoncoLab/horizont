@@ -77,6 +77,7 @@ class FirebaseService {
                     ({ id: doc.id, ...doc.data() }) )]
             )
             .catch((reason) => alert(reason));
+
 }
 
 export {
