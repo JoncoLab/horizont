@@ -41,17 +41,17 @@ export default class FooterForm extends Component {
                 <fieldset>
                     <div className="form-group">
                         <label htmlFor="name">ІМ'Я</label>
-                        <input type="text" className="form-control" id="name" name="name" aria-describedby="nameField"/>
+                        <input type="text" className="form-control" id="name" name="name" aria-describedby="nameField" required />
                     </div>
 
                     <div className="form-group">
                         <label htmlFor="email">EMAIL</label>
-                        <input type="email" className="form-control" id="email" name="email" aria-describedby="emailField"/>
+                        <input type="email" className="form-control" id="email" name="email" aria-describedby="emailField" required />
                     </div>
 
                     <div className="form-group">
                         <label htmlFor="Textarea">ВАШЕ ПОВІДОМЛЕННЯ</label>
-                        <textarea className="form-control" id="Textarea" name="message" rows="3" defaultValue=""/>
+                        <textarea className="form-control" id="Textarea" name="message" rows="3" defaultValue="" required />
                     </div>
 
                     <button type="submit" className="btn btn-primary">НАДІСЛАТИ</button>
