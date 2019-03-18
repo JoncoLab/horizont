@@ -2,6 +2,15 @@
     padding: 10px;
     width: 90%;
     border-top: 2px solid rgba(255, 255, 255, .50);
+    margin: 0 auto;
+}
+
+.footer-form {
+    width: 100%;
+}
+
+#table {
+    margin-left: 20%;
 }
 
 #table label {
@@ -38,7 +47,9 @@
     color: inherit;
     display: block;
     outline: 0;
-    padding: 0 1em;
+    padding: 1em;
+    height: 130px;
+    resize: none;
     text-decoration: none;
     width: 100%;
 }
@@ -67,6 +78,7 @@
     text-decoration: none;
     text-transform: uppercase;
     white-space: nowrap;
+    margin-bottom: 30px;
 }
 
 #table button:hover {
