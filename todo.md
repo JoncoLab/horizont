@@ -1,5 +1,4 @@
-## Из глобального осталось: 
-
+## Из глобального осталось:
 * ##### По коду:
   * ###### React / JavaScript:
     0) Рефактор SignIn;
@@ -30,5 +29,3 @@
 [Firestore Indexes]: /firestore.indexes.json
 [Storage Guides]: https://firebase.google.com/docs/storage/web/start
 [I18next]: https://www.i18next.com/overview/getting-started
-
-// todo: dsfsdf
