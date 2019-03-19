@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './admin.css';
-import { FirebaseService, alert } from "../../services";
+import {FirebaseService, alert} from "../../services";
 import Preloader from "../preloader";
 
 export default class Admin extends Component {
@@ -10,14 +10,6 @@ export default class Admin extends Component {
         allUsers: [],
         allMessages: []
     };
-
-    //FN Get All MESSAGES~!~
-    getAllMessages = async () => await this._messages.get()
-        .then(({docs}) =>
-        [ ...docs.map( (doc) =>
-            ({id: doc.id, ...doc.data() }) )]
-        )
-        .catch((reason) => alert(reason));
 
     fs = new FirebaseService();
 
@@ -34,8 +26,21 @@ export default class Admin extends Component {
                 this.setState({
                     preloader: false
                 });
+            });
+
+        this.fs.getAllMessages()
+            .then((messages) => {
+                this.setState({
+                    allMessages: messages
+                });
+            }, () => {
+                alert('Database connection error', 'error');
             })
-        
+            .finally(() => {
+                this.setState({
+                    preloader: false
+                });
+            });
     }
 
     render() {
@@ -62,7 +67,7 @@ export default class Admin extends Component {
                         <td><span>{first_name}</span></td>
                         <td><span>{last_name}</span></td>
                         <td><span>{middle_name}</span></td>
-                        <td><span>{birthday.toDate().toDateString()}</span></td>
+                        <td><span>{birthday}</span></td>
                         <td><span>{profession}</span></td>
                         <td><span>{soft_skills}</span></td>
                         <td><span>{tel}</span></td>
@@ -85,11 +90,13 @@ export default class Admin extends Component {
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td><span>"SenderName"</span></td>
-                    <td><span>"Email"</span></td>
-                    <td><span>"Message"</span></td>
-                </tr>
+                {this.state.allMessages.map(({senderName, senderEmail, message}) => (
+                    <tr>
+                        <td><span>{senderName}</span></td>
+                        <td><span>{senderEmail}</span></td>
+                        <td><span>{message}</span></td>
+                    </tr>
+                ))}
                 </tbody>
             </table>
         );
@@ -99,8 +106,8 @@ export default class Admin extends Component {
 
         return (
             <div className="table-wrapper">
-                { display }
-                { display2 }
+                {display}
+                {display2}
             </div>
         );
     }

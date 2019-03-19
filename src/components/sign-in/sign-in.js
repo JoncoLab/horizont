@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import './sign-in.css';
-import Preloader from "../preloader";
 import { FirebaseService, alert } from "../../services";
 import Form from "./form";
 
@@ -15,76 +14,59 @@ export default class SignIn extends Component {
     };
 
     fs = new FirebaseService();
+    fb = this.fs.getInstance();
 
     getInput = name => document.getElementsByName(name)[0].value;
 
-    handleSubmit = event => {
+    handleSubmit = async (event) => {
         event.preventDefault();
+
         this.setState({
             preloader: true
         });
 
+        const submitButtonId = 'sign-in-submit';
+
+        this.fb.auth().useDeviceLanguage();
+
+        window.recaptchaVerifier = () => new this.fb.auth.RecaptchaVerifier(submitButtonId, {
+            'size': 'invisible',
+            'callback': () => {
+                this.setState({
+                    confirmation: true,
+                    fields: [ { name: 'conf-code', label: 'Код підтвердження з SMS' } ],
+                    preloader: false
+                });
+            }
+        });
+
         const tel = this.getInput('tel');
 
-        this.fs.getAllUsers()
-            .then((users) => {
-                if (typeof (users.find((user) => user.tel === tel)) !== 'undefined') {
-                    this.fs.signIn(tel, window.recaptchaVerifier)
-                        .then((confirmationResult) => {
-                            window.confirmationResult = confirmationResult;
-                            this.setState({
-                                confirmation: true,
-                                fields: [{name: 'VerificationCode', label: 'Код верифікації'}]
-                            })
-                        }, () => {
-                            alert('SMS not sent!', 'warning');
-                        })
-                        .finally(() => {
-                            this.setState({
-                                preloader: false
-                            })
-                        });
-                } else {
-                    alert('Такого користувача ще не зареєстровано!', 'error');
-                    this.setState({
-                        preloader: false
-                    });
-                }
-            }, () => {
-                alert('Не вдалося з\'єднатися з базою данних', 'error');
+        await this.fb.auth().signInWithPhoneNumber(tel, window.recaptchaVerifier())
+            .then((confirmation) => {
+
+                window.confirmationResult = confirmation;
+
+                alert('Fulfilled', 'success');
+            }, ({ message }) => {
+                alert(message, 'error');
             });
+
+        this.handleConfirmation(prompt('Lol', ''));
     };
 
-    handleConfirmation = (event) => {
-        event.preventDefault();
-        alert(window.confirmationResult);
-
-        const code = this.getInput('VerificationCode');
-        alert(code);
-
-        window.cf.confirm(code)
-            .then((result) => {
-                alert(`Signed in ${result.user}`,'success');
-            }, () => {
-                alert('Not signed in', 'error');
-            })
-            .finally(() => alert('Something happened'))
+    handleConfirmation = (code) => {
+        alert(code, 'success');
     };
-
-    componentDidMount() {
-        this.fs.initializeAuth('submit-sign-in', this.handleSubmit);
-    }
 
     render() {
         // Если verification прошла успешно, то отображается заглушка.
-        const content = <Form onSubmit={ this.state.confirmation ? this.handleConfirmation : this.handleSubmit }
-                              fields={ this.state.fields }
-                              id={ this.state.confirmation ? 'confirm-code' : 'submit-sign-in' } />;
-        const display = this.state.preloader ? <Preloader /> : content;
 
         return (
             <section className="sign-in-form m-5 mx-auto">
-                { display }
+                <Form onSubmit={ this.handleSubmit }
+                      preloader={ this.state.preloader }
+                      fields={ this.state.fields } />
             </section>
         );
     }

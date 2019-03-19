@@ -29,16 +29,30 @@ const FirebaseApp = ({ children }) => {
 
 class FirebaseService {
 
-    _app = firebase.app();
+    _fb = firebase;
+    _app = this._fb.app();
     _db = this._app.firestore();
     _users = this._db.collection('users');
     _messages = this._db.collection('messages');
+
+
+    /**
+     * Возвращает Instance метода Firebase
+     * @instance fb {function}
+     */
+    getInstance = () => {
+        try {
+            return this._fb;
+        } catch (e) {
+            console.log(e);
+            return firebase;
+        }
+    };
 
     /**
      * Добавляет польхователя в Firestore
      * @param user {Object}
      */
-
     addUser = async user => {
         return await this._users.add(user)
             .catch((reason) => {
@@ -56,28 +70,21 @@ class FirebaseService {
             });
     };
 
-    signIn = tel => firebase.auth().signInWithPhoneNumber(tel, window.recaptchaVerifier);
-
-    initializeAuth = RCVId => {
-
-        firebase.auth().useDeviceLanguage();
-
-        window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(RCVId, {
-            'size': 'invisible',
-            'callback': (event) => {
-                event.preventDefault();
-            }
-        });
-    };
-
-
     getAllUsers = async () => await this._users.get()
-            .then(({docs}) =>
-                [ ...docs.map( (doc) =>
-                    ({ id: doc.id, ...doc.data() }) )]
-            )
-            .catch((reason) => alert(reason));
+        .then(({ docs }) => {
+            return [ ...docs.map( (doc) =>
+                ({ id: doc.id, ...doc.data() }) )];
+        },(reason) =>  {
+            alert(reason)
+        });
 
+    getAllMessages = async () => await this._messages.get()
+        .then(({ docs }) => {
+            return [ ...docs.map( (doc) =>
+                ({id: doc.id, ...doc.data() }) )];
+        }, (reason) => {
+            alert(reason)
+        });
 }
 
 export {
