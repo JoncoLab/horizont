@@ -38,7 +38,7 @@ export default class SignIn extends Component {
             });
     };
 
-    sendSMS = (tel) => {
+    sendSMS = tel => {
         return this.fs.signInUser(tel)
             .catch((reason) => {
                 let message = '', type = 'warning';
@@ -71,10 +71,6 @@ export default class SignIn extends Component {
             });
     };
 
-    handleConfirmation = event => {
-        alert('We are here');
-    };
-
     handleSubmit = () => {
 
         const tel = this.getInput('tel');
@@ -104,6 +100,13 @@ export default class SignIn extends Component {
             });
     };
 
+    handleConfirmation = (code) => {
+        this.fs.confirmSignIn(code)
+            .then((userCredential) => {
+                console.log(userCredential);
+            });
+    };
+
     componentDidMount() {
 
         const submitButtonId = 'sign-in-submit';
@@ -120,11 +123,11 @@ export default class SignIn extends Component {
         //  Я уже слишком хочу спать, чтобы делать это сегодня
 
         const { preloader, fields, confirmation } = this.state;
-        const onSubmit = confirmation ? this.handleConfirmation : this.handleConfirmation;
 
         return (
             <section className="sign-in-form m-5 mx-auto">
-                <Form onSubmit={ onSubmit }
+                <Form onSubmit={ this.handleSubmit }
+                      handleConfirmation={ this.handleConfirmation }
                       confirmation={ confirmation }
                       preloader={ preloader }
                       fields={ fields } />
