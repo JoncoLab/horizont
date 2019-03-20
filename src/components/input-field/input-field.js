@@ -2,13 +2,14 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import './input-field.css';
 
-const InputField = ({ name, label, type, required, title, noBar, children }) => {
+const InputField = ({ name, label, type, required, title, noBar, children, onChange }) => {
     const defaultChildren = (
         <Fragment>
             <input type={ type }
                    id={ name }
                    name={ name }
                    required={ required }
+                   onChange={ onChange }
                    title={ title }/>
             { noBar ? null : <span className="bar"/> }
             <label>{ label }</label>
@@ -36,7 +37,8 @@ InputField.propTypes = {
     type: PropTypes.string,
     required: PropTypes.bool,
     title: PropTypes.string,
-    noBar: PropTypes.bool
+    noBar: PropTypes.bool,
+    onChange: PropTypes.func.isRequired
 };
 
 export default InputField;

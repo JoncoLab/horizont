@@ -102,7 +102,7 @@ class FirebaseService {
             window.recaptchaWidgetId = widgetId;
         }, (reason) => {
             console.log(reason);
-            alert('Виникла проблема із сервісом reCAPTCHA! Спробуйте, будь ласка пізніше.');
+            alert('Виникла проблема із сервісом reCAPTCHA! Спробуйте, будь ласка пізніше.', 'warning');
         });
     };
 
@@ -111,14 +111,25 @@ class FirebaseService {
      * @param tel
      * @returns {Promise<firebase.auth.ConfirmationResult>}
      */
-    signInUser = tel => this._auth.signInWithPhoneNumber(tel, window.recaptchaVerifier);
+    signInUser = async tel => {
+        return await this._auth.signInWithPhoneNumber(tel, window.recaptchaVerifier)
+            .then(({ verificationId }) => {
+                window.verificationId = verificationId;
+            });
+    };
 
     /**
-     * todo: Написать метод для конечной авторизации, который принимает идентификатор верификации капчи и код с смс.
-      * Она будет использовать методы:
-      * 1) auth.PhoneAuthProvider.credential(verificationId, code) -> для создания credential
-      * 2) auth().signInAndRetrieveDataWithCredential(credential);
+     * Проверка кода подтверждения и возврат объекта user
+     * @param code
+     * @returns {Promise<firebase.User>}
      */
+    confirmSignIn = async (code) => {
+
+        const credential = firebase.auth.PhoneAuthProvider.credential(window.verificationId, code);
+
+        return await this._auth.signInAndRetrieveDataWithCredential(credential)
+            .then((userCredential) => userCredential.user);
+    }
 }
 
 export {
