@@ -12,6 +12,14 @@ export default class UserPage extends Component {
 
     fs = new FirebaseService();
 
+    getCurrentUser = () => {
+        return (this.fs._auth.currentUser);
+    };
+
+    getUserData = (tel) => {
+        this.getCurrentUser();
+    };
+
     static propTypes = {
         first_name: PropTypes.any,
         last_name: PropTypes.any,
@@ -25,7 +33,7 @@ export default class UserPage extends Component {
     };
 
     render() {
-        let {first_name, last_name, middle_name, birthday, profession, soft_skills, tel, email, address} = this.props;
+        const {first_name, last_name, middle_name, birthday, profession, soft_skills, tel, email, address} = this.props;
         return (
             <main className="container" id="user-page">
                 <div className="content">
