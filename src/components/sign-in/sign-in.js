@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './sign-in.css';
-import { FirebaseService, alert } from "../../services";
+import {alert, FirebaseService} from "../../services";
 import Form from "./form";
 
 
@@ -25,22 +25,22 @@ export default class SignIn extends Component {
 
     getInput = name => document.getElementsByName(name)[0].value;
 
-    validateUserRegistration = async tel => {
-        return await this.fs.getAllUsers()
+    validateUserRegistration = tel => {
+        return this.fs.getAllUsers()
             .then((users) => {
                 const valid = users.findIndex((user) => user.tel === tel) >= 0;
 
                 if (!valid) {
                     throw new Error('Користувача не знайдено! Зареєструйтеся!');
+                } else {
+                    return tel;
                 }
             });
     };
 
     sendSMS = (tel) => {
-        this.fs.signInUser(tel)
-            .then((confirmationResult) => {
-                return confirmationResult.verificationId;
-            }, (reason) => {
+        return this.fs.signInUser(tel)
+            .catch((reason) => {
                 let message = '', type = 'warning';
 
                 switch (reason.code.replace('auth/', '')) {
@@ -71,11 +71,8 @@ export default class SignIn extends Component {
             });
     };
 
-    handleConfirmation = verificationId => {
-        /**
-         * todo: Изменить state -> отрисовать input field для ввода кода с СМС;
-         * todo: Получить код, введённый пользователем
-         */
+    handleConfirmation = event => {
+        alert('We are here');
     };
 
     handleSubmit = () => {
@@ -87,8 +84,20 @@ export default class SignIn extends Component {
         this.validateUserRegistration(tel)
             .then((tel) => {
                 this.sendSMS(tel)
-                    .then((verId) => {
-                        this.handleConfirmation(verId);
+                    .then(() => {
+                        /**
+                         * todo: Изменить state -> отрисовать input field для ввода кода с СМС;
+                         * todo: Получить код, введённый пользователем
+                         */
+                        this.setState({
+                            confirmation: true,
+                            fields: [ {
+                                name: 'confirmation-code',
+                                label: 'Код підтвердження з СМС'
+                            } ]
+                        });
+
+                        this.togglePreloader();
                     })
             }, (reason) => {
                 alert(reason.message, 'error');
@@ -109,11 +118,16 @@ export default class SignIn extends Component {
         // Если verification прошла успешно, то отображается заглушка.
         // fix: Проверить как и что оно рендерить, в зависимости от каких state, и пофиксить.
         //  Я уже слишком хочу спать, чтобы делать это сегодня
+
+        const { preloader, fields, confirmation } = this.state;
+        const onSubmit = confirmation ? this.handleConfirmation : this.handleConfirmation;
+
         return (
             <section className="sign-in-form m-5 mx-auto">
-                <Form onSubmit={ this.handleSubmit }
-                      preloader={ this.state.preloader }
-                      fields={ this.state.fields } />
+                <Form onSubmit={ onSubmit }
+                      confirmation={ confirmation }
+                      preloader={ preloader }
+                      fields={ fields } />
             </section>
         );
     }
