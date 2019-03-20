@@ -102,8 +102,8 @@ export default class SignIn extends Component {
 
     handleConfirmation = (code) => {
         this.fs.confirmSignIn(code)
-            .then((userCredential) => {
-                console.log(userCredential);
+            .then((user) => {
+                console.log(user);
             });
     };
 
