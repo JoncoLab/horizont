@@ -7,61 +7,108 @@ import Form from "./form";
 export default class SignIn extends Component {
 
     state = {
-        preloader: false,
+        preloader: true,
         signedIn: false,
         confirmation: false,
         fields: [ { name: 'tel', label: 'Номер телефону' } ]
     };
 
     fs = new FirebaseService();
-    fb = this.fs.getInstance();
+
+    togglePreloader = () => {
+        this.setState(({ preloader }) => (
+            {
+                preloader: !preloader
+            }
+        ));
+    };
 
     getInput = name => document.getElementsByName(name)[0].value;
 
-    handleSubmit = async (event) => {
-        event.preventDefault();
+    validateUserRegistration = async tel => {
+        return await this.fs.getAllUsers()
+            .then((users) => {
+                const valid = users.findIndex((user) => user.tel === tel) >= 0;
 
-        this.setState({
-            preloader: true
-        });
+                if (!valid) {
+                    throw new Error('Користувача не знайдено! Зареєструйтеся!');
+                }
+            });
+    };
 
-        const submitButtonId = 'sign-in-submit';
+    sendSMS = (tel) => {
+        this.fs.signInUser(tel)
+            .then((confirmationResult) => {
+                return confirmationResult.verificationId;
+            }, (reason) => {
+                let message = '', type = 'warning';
 
-        this.fb.auth().useDeviceLanguage();
+                switch (reason.code.replace('auth/', '')) {
+                    case 'invalid-phone-number':
+                        message += 'Некоректний формат номера!';
+                        break;
+                    case 'missing-phone-number':
+                        message += 'Такого мобільного не існує!';
+                        break;
+                    case 'user-disabled':
+                        message += 'Ваш аккаунт було заблоковано!\r\nЗв\'яжіться зі службою підтримки!';
+                        type = 'error';
+                        break;
+                    default:
+                        console.log(reason);
+                        message += 'Виникла невідома помилка!\r\nСпробуйте перезавантажити сторінку.';
+                        type = 'error';
+                }
 
-        window.recaptchaVerifier = () => new this.fb.auth.RecaptchaVerifier(submitButtonId, {
-            'size': 'invisible',
-            'callback': () => {
-                this.setState({
-                    confirmation: true,
-                    fields: [ { name: 'conf-code', label: 'Код підтвердження з SMS' } ],
-                    preloader: false
-                });
-            }
-        });
+                if (type !== 'error') {
+                    message += '\r\nСпробуйте ще раз...';
+                    this.togglePreloader();
+                }
+
+                alert(message, type);
+
+                window.recaptchaVerifier.reset(window.recaptchaWidgetId);
+            });
+    };
+
+    handleConfirmation = verificationId => {
+        /**
+         * todo: Изменить state -> отрисовать input field для ввода кода с СМС;
+         * todo: Получить код, введённый пользователем
+         */
+    };
+
+    handleSubmit = () => {
 
         const tel = this.getInput('tel');
 
-        await this.fb.auth().signInWithPhoneNumber(tel, window.recaptchaVerifier())
-            .then((confirmation) => {
+        this.togglePreloader();
 
-                window.confirmationResult = confirmation;
-
-                alert('Fulfilled', 'success');
-            }, ({ message }) => {
-                alert(message, 'error');
+        this.validateUserRegistration(tel)
+            .then((tel) => {
+                this.sendSMS(tel)
+                    .then((verId) => {
+                        this.handleConfirmation(verId);
+                    })
+            }, (reason) => {
+                alert(reason.message, 'error');
             });
-
-        this.handleConfirmation(prompt('Lol', ''));
     };
 
-    handleConfirmation = (code) => {
-        alert(code, 'success');
-    };
+    componentDidMount() {
+
+        const submitButtonId = 'sign-in-submit';
+
+        this.fs.setUpGoogleReCaptcha(submitButtonId, this.handleSubmit)
+            .then(() => {
+                this.togglePreloader();
+            });
+    }
 
     render() {
         // Если verification прошла успешно, то отображается заглушка.
-
+        // fix: Проверить как и что оно рендерить, в зависимости от каких state, и пофиксить.
+        //  Я уже слишком хочу спать, чтобы делать это сегодня
         return (
             <section className="sign-in-form m-5 mx-auto">
                 <Form onSubmit={ this.handleSubmit }

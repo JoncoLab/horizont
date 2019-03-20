@@ -17,11 +17,8 @@ const _conf = {
 };
 
 const FirebaseApp = ({ children }) => {
-    try {
-        firebase.initializeApp(_conf.app);
-    } catch (e) {
-        console.log(e);
-    }
+
+    firebase.initializeApp(_conf.app);
 
     return <Fragment>{ children }</Fragment>;
 };
@@ -29,29 +26,16 @@ const FirebaseApp = ({ children }) => {
 
 class FirebaseService {
 
-    _fb = firebase;
-    _app = this._fb.app();
+    _app = firebase.app();
+    _auth = firebase.auth();
     _db = this._app.firestore();
     _users = this._db.collection('users');
     _messages = this._db.collection('messages');
 
-
     /**
-     * Возвращает Instance метода Firebase
-     * @instance fb {function}
-     */
-    getInstance = () => {
-        try {
-            return this._fb;
-        } catch (e) {
-            console.log(e);
-            return firebase;
-        }
-    };
-
-    /**
-     * Добавляет польхователя в Firestore
-     * @param user {Object}
+     * Добавление нового пользователя в базу данных
+     * @param user
+     * @returns {Promise<firebase.firestore.DocumentReference>}
      */
     addUser = async user => {
         return await this._users.add(user)
@@ -60,6 +44,11 @@ class FirebaseService {
             });
     };
 
+    /**
+     * Добавление сообщения от пользователя в базу данных
+     * @param message
+     * @returns {Promise<firebase.firestore.DocumentReference>}
+     */
     addMessage = async message => {
         return await this._messages.add(message)
             .then(() => {
@@ -70,6 +59,10 @@ class FirebaseService {
             });
     };
 
+    /**
+     * Получение всех пользователей;
+     * @returns {Promise<...[]>} - возвращает массив с объектами пользовтелей
+     */
     getAllUsers = async () => await this._users.get()
         .then(({ docs }) => {
             return [ ...docs.map( (doc) =>
@@ -78,6 +71,10 @@ class FirebaseService {
             alert(reason)
         });
 
+    /**
+     * Получение всех сообщений от пользователей;
+     * @returns {Promise<...[]>} - возвращает массив с объектами сообщений
+     */
     getAllMessages = async () => await this._messages.get()
         .then(({ docs }) => {
             return [ ...docs.map( (doc) =>
@@ -85,6 +82,43 @@ class FirebaseService {
         }, (reason) => {
             alert(reason)
         });
+
+    /**
+     * Инициализация reCAPTCHA
+     * @param submitButtonId - контейнер
+     * @param successCallback - вызываеться, когда капча успешно пройдена
+     * @returns {Promise<number>} - на всякий случай возвращает widgetId
+     */
+    setUpGoogleReCaptcha = (submitButtonId, successCallback) => {
+
+        this._auth.useDeviceLanguage();
+
+        window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(submitButtonId, {
+            'size': 'invisible',
+            'callback': successCallback
+        });
+
+        return window.recaptchaVerifier.render().then((widgetId) => {
+            window.recaptchaWidgetId = widgetId;
+        }, (reason) => {
+            console.log(reason);
+            alert('Виникла проблема із сервісом reCAPTCHA! Спробуйте, будь ласка пізніше.');
+        });
+    };
+
+    /**
+     * Вход в приложение по указанному телефону
+     * @param tel
+     * @returns {Promise<firebase.auth.ConfirmationResult>}
+     */
+    signInUser = tel => this._auth.signInWithPhoneNumber(tel, window.recaptchaVerifier);
+
+    /**
+     * todo: Написать метод для конечной авторизации, который принимает идентификатор верификации капчи и код с смс.
+      * Она будет использовать методы:
+      * 1) auth.PhoneAuthProvider.credential(verificationId, code) -> для создания credential
+      * 2) auth().signInAndRetrieveDataWithCredential(credential);
+     */
 }
 
 export {

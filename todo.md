@@ -1,3 +1,5 @@
+## Зацени наш кастомный [Репозиторий с настройками WebStorm] для меню `File` - `Settings repository` - `Overwrite Local`
+
 ## Из глобального осталось:
 * ##### По коду:
   * ###### React / JavaScript:
@@ -13,6 +15,7 @@
 * ##### Services, Tools, APIs:
   * ###### Firebase:
     0) Почитать об **[Admin SDK]**;
+    0) Проштудировать **[Manage Users]**
     0) Настроить правила **Firestore**, и **Storage**:
        * [Storage Rules]
        * [Firestore Rules]
@@ -29,3 +32,5 @@
 [Firestore Indexes]: /firestore.indexes.json
 [Storage Guides]: https://firebase.google.com/docs/storage/web/start
 [I18next]: https://www.i18next.com/overview/getting-started
+[Manage Users]: https://firebase.google.com/docs/auth/web/manage-users?authuser=0
+[Репозиторий с настройками WebStorm]: https://github.com/JoncoLab/webstorm-settings
