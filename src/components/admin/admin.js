@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './admin.css';
-import {FirebaseService, alert} from "../../services";
+import { FirebaseService, alert } from "../../services";
 import Preloader from "../preloader";
 
 export default class Admin extends Component {

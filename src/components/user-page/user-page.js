@@ -1,8 +1,31 @@
 import React, {Component} from 'react';
 import './user-page.css';
+import * as PropTypes from "prop-types";
+import { FirebaseService, alert } from "../../services";
+import Preloader from "../preloader";
 
 export default class UserPage extends Component {
+
+    state = {
+        preloader: true
+    };
+
+    fs = new FirebaseService();
+
+    static propTypes = {
+        first_name: PropTypes.any,
+        last_name: PropTypes.any,
+        middle_name: PropTypes.any,
+        birthday: PropTypes.any,
+        profession: PropTypes.any,
+        soft_skills: PropTypes.any,
+        tel: PropTypes.any,
+        email: PropTypes.any,
+        address: PropTypes.any
+    };
+
     render() {
+        let {first_name, last_name, middle_name, birthday, profession, soft_skills, tel, email, address} = this.props;
         return (
             <main className="container" id="user-page">
                 <div className="content">
@@ -10,18 +33,18 @@ export default class UserPage extends Component {
                         <div className="details">
                             <div className="tags">
                                 {/*Profile!!!!!!!!!!!!!!!!!!!!*/}
-                                <div className="tag orange">Електрик 3-го розряду</div>
+                                <div className="tag orange">{profession}</div>
                             </div>
                             {/*User name!!!!!!!!!!!!!!!!!!*/}
-                            <div className="title">name</div>
+                            <div className="title">{first_name}{last_name}{middle_name}</div>
 
                             <div className="description">
                                 {/*Location Address!!!!!!!!!!!!!!!!!!!!!*/}
                                 <div className="info-row"><i className="fa fa-map-marker"/><span className="caption">Родом з:</span><span
-                                    className="value">Хуст, Україна</span></div>
+                                    className="value">{address}</span></div>
                                 {/*Registration date!!!!!!!!!!!!!!!!!!!!*/}
                                 <div className="info-row"><i className="fa fa-calendar"/><span className="caption">Зареєстрований на сайті з:</span><span
-                                    className="value">17 червня 2018</span></div>
+                                    className="value">{birthday}</span></div>
                             </div>
                         </div>
                         <hr/>
@@ -30,29 +53,29 @@ export default class UserPage extends Component {
                             <div className="info-row">
                                 <div><h3>Контактна інформація</h3></div>
                                 {/*main tel number!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/}
-                                <div className="info-block"><i className="fa fa-home"/><span className="value">+2 574 986 224</span>
+                                <div className="info-block"><i className="fa fa-home"/><span
+                                    className="value">{tel}</span>
                                 </div>
-                                {/*Personal Site if exist*/}
-                                <div className="info-block"><i className="fa fa-globe"/><span
-                                    className="value">https://codepen.io</span></div>
                             </div>
 
-                            {/*secondary tel number if exist*/}
                             <div className="info-row">
-                                <div className="info-block"><i className="fa fa-phone"/><span className="value">+6 865 664 25 69</span>
-                                </div>
-
                                 {/*email address!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/}
                                 <div className="info-block"><i className="fa fa-envelope"/><span
-                                    className="value">mark.brack@gmail.com</span></div>
+                                    className="value">{email || 'email відсутній'}</span></div>
+                            </div>
+                            <div className="info-row">
+                                {/*soft-skills!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/}
+                                <div className="info-block"><i className="fa fa-envelope"/><span
+                                    className="value">{soft_skills}</span></div>
                             </div>
                         </div>
                     </div>
                     <div className="footer-buttons">
-                        <button className="btn btn-primary">Завантажити документи</button>
+                        <button className="btn btn-primary" onClick="s">Завантажити документи</button>
                     </div>
                 </div>
             </main>
         );
     }
 }
+
