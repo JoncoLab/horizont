@@ -111,7 +111,7 @@ class FirebaseService {
      * @param tel
      * @returns {Promise<firebase.auth.ConfirmationResult>}
      */
-    signInUser = async tel => {
+    signInUser = async (tel, uid) => {
         return await this._auth.signInWithPhoneNumber(tel, window.recaptchaVerifier)
             .then(({ verificationId }) => {
                 window.verificationId = verificationId;

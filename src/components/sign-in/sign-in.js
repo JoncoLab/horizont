@@ -28,12 +28,17 @@ export default class SignIn extends Component {
     validateUserRegistration = tel => {
         return this.fs.getAllUsers()
             .then((users) => {
-                const valid = users.findIndex((user) => user.tel === tel) >= 0;
+                const targetUser = users.findIndex((user) => user.tel === tel);
+                const valid = targetUser >= 0;
+                const uid = users[targetUser].id;
 
                 if (!valid) {
                     throw new Error('Користувача не знайдено! Зареєструйтеся!');
                 } else {
-                    return tel;
+                    return {
+                        tel,
+                        uid
+                    }
                 }
             });
     };
@@ -81,10 +86,6 @@ export default class SignIn extends Component {
             .then((tel) => {
                 this.sendSMS(tel)
                     .then(() => {
-                        /**
-                         * todo: Изменить state -> отрисовать input field для ввода кода с СМС;
-                         * todo: Получить код, введённый пользователем
-                         */
                         this.setState({
                             confirmation: true,
                             fields: [ {
@@ -118,9 +119,6 @@ export default class SignIn extends Component {
     }
 
     render() {
-        // Если verification прошла успешно, то отображается заглушка.
-        // fix: Проверить как и что оно рендерить, в зависимости от каких state, и пофиксить.
-        //  Я уже слишком хочу спать, чтобы делать это сегодня
 
         const { preloader, fields, confirmation } = this.state;
 
