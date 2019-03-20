@@ -3,6 +3,14 @@ import './app-footer.css';
 import { FooterTitle, FooterForm, FooterCopyright } from "./";
 import PropTypes from 'prop-types';
 
+/**
+ * Сборка футера в зависимости от bool параметров, полученных в свойствах
+ * @param title
+ * @param form
+ * @param copyright
+ * @returns {*}
+ * @constructor
+ */
 const AppFooter = ({ title, form, copyright }) => {
 
     return (

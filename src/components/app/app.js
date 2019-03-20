@@ -1,20 +1,22 @@
 import React, {Component} from 'react';
 import './app.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-
 import AppHeader from "../app-header";
 import { AppFooter } from "../app-footer";
 import WelcomeScreen from "../welcome-screen";
 import SignUp from "../sign-up";
 import SignIn from "../sign-in";
-
 import { ToastsContainer, ToastsStore } from 'react-toasts';
 import { alert } from "../../services";
 import Admin from "../admin";
 import UserPage from "../user-page";
+import 'bootswatch/dist/darkly/bootstrap.min.css';
 
 export default class App extends Component {
-
+    /**
+     * Набор всех доступных кнопок
+     * @type { { [name]: { to: string, label: string } } }
+     */
     nav = {
         si: { to: '/sign-in', label: 'Увійти' },
         su: { to: '/sign-up', label: 'Зареєструватися' },
@@ -30,6 +32,9 @@ export default class App extends Component {
     render() {
         return (
             <Router>
+                {/**
+                 * Сборка основных елементов страницы в зависимости от страницы
+                */}
                 <div className="app">
                     <header>
                         <Route path="/" exact component={ () =>
@@ -56,6 +61,9 @@ export default class App extends Component {
                         <Route path="/" component={ AppFooter } />
                     </footer>
 
+                    {/**
+                    * Контейнер для кастомных уведомлений через функцию alert()
+                    */}
                     <ToastsContainer store={ ToastsStore } />
                 </div>
             </Router>

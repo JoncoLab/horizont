@@ -3,6 +3,12 @@ import './app-header.css';
 import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
 
+/**
+ * Рендер хедера и навигационной панели на основе данных, которые передаються в свойствах
+ * @param buttons
+ * @returns {*}
+ * @constructor
+ */
 const AppHeader = ({ buttons }) => (
     <nav className="navbar navbar-expand-lg navbar-light bg-light" id="header-nav-bar">
         <a className="navbar-brand fa-road" id="brand-nav-bar" href="/">orizont Jobs</a>
@@ -16,6 +22,9 @@ const AppHeader = ({ buttons }) => (
                 {
                     buttons.map(({ to, label }, i) => (
                         <li key={ label.toLowerCase().replace(/ /g, '') } className="nav-item m-2">
+                            {/**
+                             * Для работы с маршрутизатором вместо <a> нужно использовать <Link>
+                             */}
                             <Link className={`link ${ i < buttons.length - 1 ? 'secondary' : 'primary'}`} to={ to }>{ label }</Link>
                         </li>
                     ))

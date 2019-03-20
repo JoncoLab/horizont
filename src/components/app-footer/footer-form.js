@@ -8,10 +8,23 @@ export default class FooterForm extends Component {
         preloader: false
     };
 
+    /**
+     * Импорт обработчиков
+     * @type {FirebaseService}
+     */
     fs = new FirebaseService();
 
+    /**
+     * Получение значиния поля по его имени
+     * @param name
+     * @returns {string}
+     */
     getInput = name => document.getElementsByName(name)[0].value;
 
+    /**
+     * Обработка отправки
+     * @param event - нужен для отмены дефолтной функции
+     */
     handleSubmit = (event) => {
         event.preventDefault();
 
@@ -23,6 +36,10 @@ export default class FooterForm extends Component {
 
         this.setState({ preloader: true });
 
+        /**
+         * Отправка и обработка запроса на добавление сообщения
+         * @param newMessage {Object}
+         */
         this.fs.addMessage(newMessage)
             .then(() => {
                 alert('Ваше повідомлення надіслано!', 'success');
@@ -58,6 +75,7 @@ export default class FooterForm extends Component {
                 </fieldset>
             </form>
         );
+
         const display = this.state.preloader ? <Preloader/> : form;
 
         return (
