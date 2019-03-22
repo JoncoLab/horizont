@@ -1,4 +1,7 @@
-## Зацени наш кастомный [Репозиторий с настройками WebStorm] для меню `File` - `Settings repository` - `Overwrite Local`
+### Зацени наш кастомный [Репозиторий с настройками WebStorm] для меню `File` - `Settings repository` - `Overwrite Local`        
+    Token: bbd4ed273264be6654777f8c6f76babb70570f1b
+##
+
 
 ## Из глобального осталось:
 * ##### По коду:
