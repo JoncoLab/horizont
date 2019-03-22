@@ -60,7 +60,7 @@ export default class SignIn extends Component {
                         type = 'error';
                         break;
                     default:
-                        console.log(reason);
+                        console.log(reason.message);
                         message += 'Виникла невідома помилка!\r\nСпробуйте перезавантажити сторінку.';
                         type = 'error';
                 }
