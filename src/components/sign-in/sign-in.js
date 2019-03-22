@@ -26,21 +26,15 @@ export default class SignIn extends Component {
     getInput = name => document.getElementsByName(name)[0].value;
 
     validateUserRegistration = tel => {
-        return this.fs.getAllUsers()
-            .then((users) => {
-                const targetUser = users.findIndex((user) => user.tel === tel);
-                const valid = targetUser >= 0;
-                const uid = users[targetUser].id;
-
-                if (!valid) {
-                    throw new Error('Користувача не знайдено! Зареєструйтеся!');
-                } else {
-                    return {
-                        tel,
-                        uid
+        return this.fs.checkIfUserExistsByTel(tel)
+            .then(
+                valid => {
+                    if (!valid) {
+                        throw new Error('Такого користувача не знайдено!');
                     }
-                }
-            });
+                },
+                error => { alert(error.message, 'error') }
+            );
     };
 
     sendSMS = tel => {
@@ -73,6 +67,8 @@ export default class SignIn extends Component {
                 alert(message, type);
 
                 window.recaptchaVerifier.reset(window.recaptchaWidgetId);
+
+                throw new Error(message);
             });
     };
 
@@ -83,28 +79,33 @@ export default class SignIn extends Component {
         this.togglePreloader();
 
         this.validateUserRegistration(tel)
-            .then((tel) => {
-                this.sendSMS(tel)
-                    .then(() => {
-                        this.setState({
-                            confirmation: true,
-                            fields: [ {
-                                name: 'confirmation-code',
-                                label: 'Код підтвердження з СМС'
-                            } ]
-                        });
+            .then(
+                () => {
+                    this.sendSMS(tel)
+                        .then(() => {
+                            this.setState({
+                                confirmation: true,
+                                fields: [ {
+                                    name: 'confirmation-code',
+                                    label: 'Код підтвердження з СМС'
+                                } ]
+                            });
 
-                        this.togglePreloader();
-                    })
-            }, (reason) => {
-                alert(reason.message, 'error');
-            });
+                            this.togglePreloader();
+                        }, () => {
+                            this.togglePreloader();
+                        });
+                },
+                reason => {
+                    alert(reason.message, 'error');
+                }
+            );
     };
 
-    handleConfirmation = (code) => {
+    handleConfirmation = code => {
         this.fs.confirmSignIn(code)
-            .then((user) => {
-                console.log(user);
+            .then(() => {
+                window.location.replace('/user-page');
             });
     };
 

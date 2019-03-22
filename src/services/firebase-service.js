@@ -27,7 +27,6 @@ const FirebaseApp = ({ children }) => {
 class FirebaseService {
 
     _app = firebase.app();
-    _auth = firebase.auth();
     _db = this._app.firestore();
     _users = this._db.collection('users');
     _messages = this._db.collection('messages');
@@ -72,6 +71,48 @@ class FirebaseService {
         });
 
     /**
+     * Получение пользователя по номеру телефона
+     * @param tel
+     * @returns {Promise<firebase.firestore.QuerySnapshot>}
+     */
+
+    getUserByTel = async tel => await this._users
+        .where('tel', '==', tel)
+        .get()
+        .then((QuerySnapshot) => {
+            if (!QuerySnapshot.empty) {
+                return QuerySnapshot.docs;
+            } else if (QuerySnapshot.size > 1) {
+                throw new Error('Знайдено дублікати! Будь ласка, зверніться до адмістратора!');
+            } else {
+                throw new Error('Користувача не знайдено!');
+            }
+        },reason => {
+            console.log(reason);
+            throw new Error('Помилка зв\'язку з базою даних!')
+        });
+
+    getCurrentUser = () => {
+        return firebase.auth().currentUser;
+    };
+
+    /**
+     * Проверка, существует ли пользователь с заданным телефоном
+     * @param tel
+     * @returns {Promise<boolean>}
+     */
+    checkIfUserExistsByTel = async tel => await this._users
+        .where('tel', '==', tel)
+        .get()
+        .then(
+            query => !query.empty,
+            reason => {
+                console.log(reason);
+                throw new Error('Помилка зв\'язку з базою даних!');
+            }
+        );
+
+    /**
      * Получение всех сообщений от пользователей;
      * @returns {Promise<...[]>} - возвращает массив с объектами сообщений
      */
@@ -91,7 +132,7 @@ class FirebaseService {
      */
     setUpGoogleReCaptcha = (submitButtonId, successCallback) => {
 
-        this._auth.useDeviceLanguage();
+        firebase.auth().useDeviceLanguage();
 
         window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(submitButtonId, {
             'size': 'invisible',
@@ -111,8 +152,8 @@ class FirebaseService {
      * @param tel
      * @returns {Promise<firebase.auth.ConfirmationResult>}
      */
-    signInUser = async (tel, uid) => {
-        return await this._auth.signInWithPhoneNumber(tel, window.recaptchaVerifier)
+    signInUser = async (tel) => {
+        return await firebase.auth().signInWithPhoneNumber(tel, window.recaptchaVerifier)
             .then(({ verificationId }) => {
                 window.verificationId = verificationId;
             });
@@ -123,12 +164,15 @@ class FirebaseService {
      * @param code
      * @returns {Promise<firebase.User>}
      */
-    confirmSignIn = async (code) => {
+    confirmSignIn = async code => {
 
-        const credential = firebase.auth.PhoneAuthProvider.credential(window.verificationId, code);
+        const credential = await firebase.auth.PhoneAuthProvider.credential(window.verificationId, code);
 
-        return await this._auth.signInAndRetrieveDataWithCredential(credential)
-            .then((userCredential) => userCredential.user);
+        return firebase.auth().signInAndRetrieveDataWithCredential(credential)
+            .catch(reason => {
+                    throw new Error(reason.message);
+                }
+            );
     }
 }
 

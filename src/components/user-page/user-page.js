@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import './user-page.css';
-import * as PropTypes from "prop-types";
 import { FirebaseService, alert } from "../../services";
 import Preloader from "../preloader";
 
@@ -12,25 +11,16 @@ export default class UserPage extends Component {
 
     fs = new FirebaseService();
 
-    getCurrentUser = () => {
-        return (this.fs._auth.currentUser);
+    getCurrentUserData = () => {
+        // return this.fs.getUserByTel(tel)
+        //     .then(user => {
+        //         console.log(user);
+        //     });
     };
 
-    getUserData = (tel) => {
-        this.getCurrentUser();
-    };
-
-    static propTypes = {
-        first_name: PropTypes.any,
-        last_name: PropTypes.any,
-        middle_name: PropTypes.any,
-        birthday: PropTypes.any,
-        profession: PropTypes.any,
-        soft_skills: PropTypes.any,
-        tel: PropTypes.any,
-        email: PropTypes.any,
-        address: PropTypes.any
-    };
+    componentDidMount() {
+        console.log(this.fs.getCurrentUser());
+    }
 
     render() {
         const {first_name, last_name, middle_name, birthday, profession, soft_skills, tel, email, address} = this.props;
