@@ -54,7 +54,7 @@ export default class FooterForm extends Component {
 
     render() {
         const form = (
-            <form method="post" className="col-md" id="table" onSubmit={ (event) => this.handleSubmit(event) }>
+            <form method="post" className="col-md" id="table" onSubmit={ this.handleSubmit }>
                 <fieldset>
                     <div className="form-group">
                         <label htmlFor="name">ІМ'Я</label>

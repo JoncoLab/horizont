@@ -35,7 +35,7 @@ const AppHeader = ({ buttons }) => (
 );
 
 AppHeader.defaultProps = {
-    buttons: []
+    buttons: [ { to: '/', label: 'На головну'} ]
 };
 
 AppHeader.propTypes = {

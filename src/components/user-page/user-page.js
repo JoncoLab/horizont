@@ -1,78 +1,108 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import './user-page.css';
-import { FirebaseService, alert } from "../../services";
+import {alert, FirebaseService} from "../../services";
 import Preloader from "../preloader";
 
 export default class UserPage extends Component {
 
     state = {
-        preloader: true
+        preloader: true,
+        userData: {}
     };
 
     fs = new FirebaseService();
 
-    getCurrentUserData = () => {
-        // return this.fs.getUserByTel(tel)
-        //     .then(user => {
-        //         console.log(user);
-        //     });
+    handleUpload = () => {
+      /**
+       * todo: Подгрузка и добавление файлов в Storage
+       */
     };
 
     componentDidMount() {
-        console.log(this.fs.getCurrentUser());
+
+        const currentUser = this.fs.getCurrentUser();
+
+        if (currentUser) {
+            const tel = currentUser.phoneNumber;
+            this.fs.getUserByTel(tel)
+                .then(
+                    userData => { this.setState({ userData, preloader: false }) },
+                    error => { alert(error.message, 'error') }
+                );
+        } else {
+            alert('Виникла помилка! Ви не увійшли до акаунту!', 'error')
+        }
     }
 
     render() {
-        const {first_name, last_name, middle_name, birthday, profession, soft_skills, tel, email, address} = this.props;
-        return (
-            <main className="container" id="user-page">
-                <div className="content">
-                    <div className="profile">
-                        <div className="details">
-                            <div className="tags">
-                                {/*Profile!!!!!!!!!!!!!!!!!!!!*/}
-                                <div className="tag orange">{profession}</div>
-                            </div>
-                            {/*User name!!!!!!!!!!!!!!!!!!*/}
-                            <div className="title">{first_name}{last_name}{middle_name}</div>
+        /**
+         * todo: Поотображать все данные. Посмотреть чего не хватает.
+         */
 
-                            <div className="description">
-                                {/*Location Address!!!!!!!!!!!!!!!!!!!!!*/}
-                                <div className="info-row"><i className="fa fa-map-marker"/><span className="caption">Родом з:</span><span
-                                    className="value">{address}</span></div>
-                                {/*Registration date!!!!!!!!!!!!!!!!!!!!*/}
-                                <div className="info-row"><i className="fa fa-calendar"/><span className="caption">Зареєстрований на сайті з:</span><span
-                                    className="value">{birthday}</span></div>
-                            </div>
-                        </div>
-                        <hr/>
+        const {first_name, last_name, middle_name, birthday, profession, soft_skills, tel, email, address} = this.state.userData;
 
-                        <div className="further">
-                            <div className="info-row">
-                                <div><h3>Контактна інформація</h3></div>
-                                {/*main tel number!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/}
-                                <div className="info-block"><i className="fa fa-home"/><span
-                                    className="value">{tel}</span>
-                                </div>
-                            </div>
+        const details = (
+            <div className="details">
+                <div className="tags">
+                    {/*Profile!!!!!!!!!!!!!!!!!!!!*/}
+                    <div className="tag orange">{profession}</div>
+                </div>
+                {/*User name!!!!!!!!!!!!!!!!!!*/}
+                <div className="title">{first_name}{last_name}{middle_name}</div>
 
-                            <div className="info-row">
-                                {/*email address!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/}
-                                <div className="info-block"><i className="fa fa-envelope"/><span
-                                    className="value">{email || 'email відсутній'}</span></div>
-                            </div>
-                            <div className="info-row">
-                                {/*soft-skills!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/}
-                                <div className="info-block"><i className="fa fa-envelope"/><span
-                                    className="value">{soft_skills}</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="footer-buttons">
-                        <button className="btn btn-primary" onClick="s">Завантажити документи</button>
+                <div className="description">
+                    {/*Location Address!!!!!!!!!!!!!!!!!!!!!*/}
+                    <div className="info-row"><i className="fa fa-map-marker"/><span className="caption">Родом з:</span><span
+                        className="value">{address}</span></div>
+                    {/*Registration date!!!!!!!!!!!!!!!!!!!!*/}
+                    <div className="info-row"><i className="fa fa-calendar"/><span className="caption">Зареєстрований на сайті з:</span><span
+                        className="value">{birthday}</span></div>
+                </div>
+            </div>
+        );
+
+        const further = (
+            <div className="further">
+                <div className="info-row">
+                    <div><h3>Контактна інформація</h3></div>
+                    {/*main tel number!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/}
+                    <div className="info-block"><i className="fa fa-home"/><span
+                        className="value">{tel}</span>
                     </div>
                 </div>
-            </main>
+
+                <div className="info-row">
+                    {/*email address!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/}
+                    <div className="info-block"><i className="fa fa-envelope"/><span
+                        className="value">{email || 'email відсутній'}</span></div>
+                </div>
+                <div className="info-row">
+                    {/*soft-skills!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/}
+                    <div className="info-block"><i className="fa fa-envelope"/><span
+                        className="value">{soft_skills}</span></div>
+                </div>
+            </div>
+        );
+
+        const footerButtons = (
+            <div className="footer-buttons">
+                <button className="btn btn-primary" onClick={ this.handleUpload }>Завантажити документи</button>
+            </div>
+        );
+
+        const display = content => this.state.preloader ? <Preloader /> : content;
+
+        return (
+            <Fragment>
+                <div className="content container user-page" id="user-page">
+                    <div className="profile">
+                        { display(details) }
+                        <hr/>
+                        { display(further) }
+                    </div>
+                    { display(footerButtons) }
+                </div>
+            </Fragment>
         );
     }
 }

@@ -103,9 +103,12 @@ export default class SignIn extends Component {
     };
 
     handleConfirmation = code => {
+
+        const redirect = url => this.props.history.push(url);
+
         this.fs.confirmSignIn(code)
             .then(() => {
-                window.location.replace('/user-page');
+                redirect('user-page');
             });
     };
 

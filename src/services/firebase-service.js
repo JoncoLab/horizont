@@ -81,7 +81,7 @@ class FirebaseService {
         .get()
         .then((QuerySnapshot) => {
             if (!QuerySnapshot.empty) {
-                return QuerySnapshot.docs;
+                return QuerySnapshot.docs[0].data();
             } else if (QuerySnapshot.size > 1) {
                 throw new Error('Знайдено дублікати! Будь ласка, зверніться до адмістратора!');
             } else {
@@ -92,9 +92,7 @@ class FirebaseService {
             throw new Error('Помилка зв\'язку з базою даних!')
         });
 
-    getCurrentUser = () => {
-        return firebase.auth().currentUser;
-    };
+    getCurrentUser = () => firebase.auth().currentUser;
 
     /**
      * Проверка, существует ли пользователь с заданным телефоном
