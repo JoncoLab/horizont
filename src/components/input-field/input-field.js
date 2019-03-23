@@ -38,7 +38,7 @@ InputField.propTypes = {
     required: PropTypes.bool,
     title: PropTypes.string,
     noBar: PropTypes.bool,
-    onChange: PropTypes.func.isRequired
+    onChange: PropTypes.func
 };
 
 export default InputField;
