@@ -6,12 +6,10 @@ import { FirebaseApp } from "./services/firebase-service";
 import 'bootstrap';
 
 /**
- * @const root {<FirebaseApp children={function}">} - обёртка для приложения, которая служить для инициализации Firebase
+ * @const root {<FirebaseApp app={Component}">} - обёртка для приложения, которая служить для инициализации Firebase
  */
 const root = (
-    <FirebaseApp>
-        <App />
-    </FirebaseApp>
+    <FirebaseApp app={ App } />
 );
 
 render(root,

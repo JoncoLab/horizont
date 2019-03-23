@@ -2,26 +2,58 @@ import * as firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 
-import React, { Fragment } from "react";
+import React, { Component } from "react";
 import alert from './alert';
+import * as PropTypes from "prop-types";
 
 const _conf = {
-    app: {
-        apiKey: "AIzaSyAmCCaTn6XBU3Js_QKdhRyW4Ja7xzqCgWU",
-        authDomain: "horizont-jobs-jl.firebaseapp.com",
-        databaseURL: "https://horizont-jobs-jl.firebaseio.com",
-        projectId: "horizont-jobs-jl",
-        storageBucket: "horizont-jobs-jl.appspot.com",
-        messagingSenderId: "123865770797"
+    apiKey: "AIzaSyAmCCaTn6XBU3Js_QKdhRyW4Ja7xzqCgWU",
+    authDomain: "horizont-jobs-jl.firebaseapp.com",
+    databaseURL: "https://horizont-jobs-jl.firebaseio.com",
+    projectId: "horizont-jobs-jl",
+    storageBucket: "horizont-jobs-jl.appspot.com",
+    messagingSenderId: "123865770797"
+};
+
+class FirebaseApp extends Component {
+
+    static propTypes = {
+        app: PropTypes.func.isRequired
+    };
+
+    state = {
+        auth: false
+    };
+
+    constructor(props) {
+
+        super(props);
+
+        firebase.initializeApp(_conf);
     }
-};
 
-const FirebaseApp = ({ children }) => {
+    componentDidMount() {
 
-    firebase.initializeApp(_conf.app);
+        firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                this.setState({
+                    auth: true
+                });
+            } else {
+                this.setState({
+                    auth: false
+                });
+            }
+        });
+    }
 
-    return <Fragment>{ children }</Fragment>;
-};
+    render() {
+
+        const App = this.props.app;
+
+        return <App auth={ this.state.auth }/>
+    }
+}
 
 
 class FirebaseService {
@@ -92,6 +124,10 @@ class FirebaseService {
             throw new Error('Помилка зв\'язку з базою даних!')
         });
 
+    /**
+     * Получение текущего пользователя
+     * @returns {firebase.User}
+     */
     getCurrentUser = () => firebase.auth().currentUser;
 
     /**
@@ -137,12 +173,10 @@ class FirebaseService {
             'callback': successCallback
         });
 
-        return window.recaptchaVerifier.render().then((widgetId) => {
-            window.recaptchaWidgetId = widgetId;
-        }, (reason) => {
-            console.log(reason);
-            alert('Виникла проблема із сервісом reCAPTCHA! Спробуйте, будь ласка пізніше.', 'warning');
-        });
+        return window.recaptchaVerifier.render().then(
+            widgetId => { window.recaptchaWidgetId = widgetId },
+            reason => { throw new Error(reason.message) }
+        );
     };
 
     /**

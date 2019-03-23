@@ -6,6 +6,12 @@ import Form from "./form";
 
 export default class SignIn extends Component {
 
+    constructor(props) {
+
+        super(props);
+
+        this._isMounted = false;
+    }
     state = {
         preloader: true,
         signedIn: false,
@@ -16,7 +22,7 @@ export default class SignIn extends Component {
     fs = new FirebaseService();
 
     togglePreloader = () => {
-        this.setState(({ preloader }) => (
+        this._isMounted && this.setState(({ preloader }) => (
             {
                 preloader: !preloader
             }
@@ -83,7 +89,7 @@ export default class SignIn extends Component {
                 () => {
                     this.sendSMS(tel)
                         .then(() => {
-                            this.setState({
+                            this._isMounted && this.setState({
                                 confirmation: true,
                                 fields: [ {
                                     name: 'confirmation-code',
@@ -114,12 +120,21 @@ export default class SignIn extends Component {
 
     componentDidMount() {
 
+        this._isMounted = true;
+
         const submitButtonId = 'sign-in-submit';
 
-        this.fs.setUpGoogleReCaptcha(submitButtonId, this.handleSubmit)
+        this._isMounted && this.fs.setUpGoogleReCaptcha(submitButtonId, this.handleSubmit)
             .then(() => {
                 this.togglePreloader();
+            }, error => {
+                this._isMounted && alert('Виникла проблема із сервісом reCAPTCHA! Спробуйте, будь ласка пізніше.', 'warning');
+                this._isMounted && console.log(error.message);
             });
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false;
     }
 
     render() {

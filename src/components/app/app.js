@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './app.css';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import AppHeader from "../app-header";
@@ -7,7 +7,7 @@ import WelcomeScreen from "../welcome-screen";
 import SignUp from "../sign-up";
 import SignIn from "../sign-in";
 import { ToastsContainer, ToastsStore } from 'react-toasts';
-import { alert } from "../../services";
+import { alert, AuthWrapper } from "../../services";
 import Admin from "../admin";
 import UserPage from "../user-page";
 import 'bootswatch/dist/darkly/bootstrap.min.css';
@@ -23,16 +23,20 @@ export default class App extends Component {
         si: { to: '/sign-in', label: 'Увійти' },
         su: { to: '/sign-up', label: 'Зареєструватися' },
         h: { to: '/', label: 'Домашня сторінка' },
-        a: { to: '/admin', label: 'Admin' },
         lo: { to: '/log-out', label: 'Вийти' },
         up: { to: '/user-page', label: 'В кабінет'}
     };
 
     componentDidCatch(error) {
-        alert(error, 'error');
+        console.log(error);
+        alert(error.message, 'error');
     };
 
     render() {
+        
+        const { si, su, h, lo, up } = this.nav;
+        const { auth } = this.props;
+        
         return (
             <Router>
                 {/**
@@ -42,23 +46,23 @@ export default class App extends Component {
                     <header>
                         <Switch>
                             <Route path="/" exact component={ () =>
-                                <AppHeader buttons={[this.nav.up,this.nav.si,this.nav.su]}/>} />
+                                <AppHeader buttons={ auth ? [ lo, up ] : [ si, su ] } />} />
                             <Route path="/sign-in" component={ () =>
-                                <AppHeader buttons={[this.nav.h,this.nav.su]}/>} />
+                                <AppHeader buttons={ [ h, su ] } />} />
                             <Route path="/sign-up" component={ () =>
-                                <AppHeader buttons={[this.nav.h,this.nav.si]}/>} />
+                                <AppHeader buttons={ [ h, si ] } />} />
                             <Route path="/user-page" component={ () =>
-                                <AppHeader buttons={[this.nav.lo,this.nav.h]}/>}/>
+                                <AppHeader buttons={ [ lo, h ] } />} />
                             <Route path="/admin" component={ AppHeader } />
-                            <Route component={ AppHeader }/>
+                            <Route component={ AppHeader } />
                         </Switch>
                     </header>
 
                     <main className="main mx-auto mt-2">
                         <Switch>
                             <Route exact path="/" component={ WelcomeScreen } />
-                            <Route path="/sign-in" component={ SignIn } />
-                            <Route path="/sign-up" component={ SignUp } />
+                            <AuthWrapper path="/sign-in" auth={ auth } component={ SignIn }/>
+                            <AuthWrapper path="/sign-up" auth={ auth } component={ SignUp }/>
                             <Route path="/user-page" component={ UserPage } />
                             <Route path="/admin" component={ Admin } />
                             <Route component={ NotFound }/>

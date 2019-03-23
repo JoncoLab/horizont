@@ -22,7 +22,7 @@ export default class UserPage extends Component {
 
         const currentUser = this.fs.getCurrentUser();
 
-        if (currentUser) {
+        if (currentUser !== null) {
             const tel = currentUser.phoneNumber;
             this.fs.getUserByTel(tel)
                 .then(
@@ -30,9 +30,10 @@ export default class UserPage extends Component {
                     error => { alert(error.message, 'error') }
                 );
         } else {
-            alert('Виникла помилка! Ви не увійшли до акаунту!', 'error')
+            this.props.history.push('/sign-in');
         }
     }
+
 
     render() {
         /**
