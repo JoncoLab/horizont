@@ -71,7 +71,7 @@ class FirebaseService {
     addUser = async user => {
         return await this._users.add(user)
             .catch((reason) => {
-                alert(reason);
+                throw new Error(reason.message);
             });
     };
 
@@ -205,7 +205,12 @@ class FirebaseService {
                     throw new Error(reason.message);
                 }
             );
-    }
+    };
+
+    signOutUser = async () => await firebase.auth().signOut()
+        .catch(error => {
+            throw new Error(error.message);
+        });
 }
 
 export {

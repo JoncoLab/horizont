@@ -8,7 +8,7 @@ import Form from "./form";
 class SignUp extends Component {
 
     state = {
-        preloader: false,
+        preloader: true,
         signedUp: false
     };
 
@@ -26,52 +26,73 @@ class SignUp extends Component {
 
     fs = new FirebaseService();
 
+    togglePreloader = () => {
+        this.setState(({ preloader }) => ({ preloader: !preloader }));
+    };
+
     getInput = name => document.getElementsByName(name)[0].value;
 
     handleSubmit = event => {
         event.preventDefault();
-        this.setState({ preloader: true });
+        this.togglePreloader();
 
-        // Создание списка имён-значений полученных из формы
-        const values = [
-            ...this.fields.map(({ name }) => (
-                { name, value: this.getInput(name) }
-            ))
-        ];
-        values.push({ name: 'doc', value: this.getInput('doc') });
+        const tel = this.getInput('tel');
+        /**
+         * Проверка, существует ли пользователь
+         * @type {boolean}
+         */
+        const valid = !this.fs.checkIfUserExistsByTel(tel);
 
-        this.fs.getAllUsers()
-            .then((users) => {
+        if (valid) {
 
-                if (users.find((user) =>
-                    values.find((v) =>
-                        v.name === 'tel').value === user.tel) === undefined) {
+            /**
+             * Создание списка имён-значений полученных из формы
+             * @type {{name, value: *}[]}
+             */
+            const values = [
+                ...this.fields.map(({ name }) => (
+                    { name, value: this.getInput(name) }
+                ))
+            ];
+            values.push({ name: 'doc', value: this.getInput('doc') });
 
-                    // Присвоение имён-значений объекту newUser
-                    let newUser = {};
-                    values.forEach((value) => {
-                        newUser = {
-                            ...newUser,
-                            [value.name]: value.value
-                        };
-                    });
-
-                    // Добавление нового пользователя в базу даных
-                    this.fs.addUser(newUser)
-                        .then(() => {
-                            this.setState({
-                                signedUp: true
-                            });
-                            alert('Успішна реєстрація!');
-                        });
-                } else {
-                    alert('Користувача з таким номером телефону вже зареєстровано!','warning');
-                }
-            })
-            .finally(() => {
-                this.setState({ preloader: false });
+            /**
+             * Присвоение имён-значений объекту newUser
+             * @type {{name?: any}}
+             */
+            let newUser = {};
+            values.forEach((value) => {
+                newUser = {
+                    ...newUser,
+                    [value.name]: value.value
+                };
             });
+
+            /**
+             * Добавление нового пользователя в базу даных
+             */
+            this.fs.addUser(newUser)
+                .then(
+                    () => {
+                        this.setState({
+                            signedUp: true
+                        });
+                        alert('Успішна реєстрація!');
+                    },
+                    error => {
+                        alert('Помилка бази даних', 'error');
+                        console.log(error.message);
+                    }
+                )
+                .finally(() => { this.togglePreloader() });
+        } else {
+            alert('Користувача з таким номером телефону вже зареєстровано!','warning');
+        }
     };
+
+    componentDidMount() {
+        this.togglePreloader();
+    }
 
     render() {
         // Если регистрация прошла успешно, то отображается заглушка.

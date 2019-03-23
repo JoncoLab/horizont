@@ -12,6 +12,7 @@ import Admin from "../admin";
 import UserPage from "../user-page";
 import 'bootswatch/dist/darkly/bootstrap.min.css';
 import NotFound from "../not-found";
+import LogOut from "../log-out";
 
 export default class App extends Component {
 
@@ -65,6 +66,7 @@ export default class App extends Component {
                             <AuthWrapper path="/sign-up" auth={ auth } component={ SignUp }/>
                             <Route path="/user-page" component={ UserPage } />
                             <Route path="/admin" component={ Admin } />
+                            <Route path="/log-out" component={ LogOut } />
                             <Route component={ NotFound }/>
                         </Switch>
                     </main>
