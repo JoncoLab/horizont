@@ -42,7 +42,7 @@ export default class FooterForm extends Component {
          */
         this.fs.addMessage(newMessage)
             .then(() => {
-                alert('Ваше повідомлення надіслано!', 'success');
+                alert('Ваше повідомлення відправлено!', 'success');
             }, () => {
                 alert('Помилка з\'єднання з базою даних');
             })
@@ -76,7 +76,7 @@ export default class FooterForm extends Component {
             </form>
         );
 
-        const display = this.state.preloader ? <Preloader/> : form;
+        const display = this.state.preloader ? [<Preloader/>, form] : form;
 
         return (
             <footer className="footer-form row">

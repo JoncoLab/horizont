@@ -13,9 +13,13 @@ export default class UserPage extends Component {
     fs = new FirebaseService();
 
     handleUpload = () => {
-      /**
-       * todo: Подгрузка и добавление файлов в Storage
-       */
+        // gs://horizont-jobs-jl.appspot.com/
+        // gs://horizont-jobs-jl.appspot.com/initial
+
+        alert('Документи відправлено!');
+        /**
+         * todo: Подгрузка и добавление файлов в Storage
+         */
     };
 
     componentDidMount() {
@@ -26,8 +30,12 @@ export default class UserPage extends Component {
             const tel = currentUser.phoneNumber;
             this.fs.getUserByTel(tel)
                 .then(
-                    userData => { this.setState({ userData, preloader: false }) },
-                    error => { alert(error.message, 'error') }
+                    userData => {
+                        this.setState({userData, preloader: false})
+                    },
+                    error => {
+                        alert(error.message, 'error')
+                    }
                 );
         } else {
             this.props.history.push('/sign-in');
@@ -36,9 +44,6 @@ export default class UserPage extends Component {
 
 
     render() {
-        /**
-         * todo: Поотображать все данные. Посмотреть чего не хватает.
-         */
 
         const {first_name, last_name, middle_name, birthday, profession, soft_skills, tel, email, address} = this.state.userData;
 
@@ -46,17 +51,18 @@ export default class UserPage extends Component {
             <div className="details">
                 <div className="tags">
                     {/*Profile!!!!!!!!!!!!!!!!!!!!*/}
-                    <div className="tag orange">{profession}</div>
+                    <div className="tag orange"><span className="caption">Професія: </span> {profession}</div>
                 </div>
                 {/*User name!!!!!!!!!!!!!!!!!!*/}
-                <div className="title">{first_name}{last_name}{middle_name}</div>
+                <div className="title">{first_name} {last_name} {middle_name}</div>
 
                 <div className="description">
                     {/*Location Address!!!!!!!!!!!!!!!!!!!!!*/}
-                    <div className="info-row"><i className="fa fa-map-marker"/><span className="caption">Родом з:</span><span
+                    <div className="info-row"><i className="fa fa-map-marker"/><span
+                        className="caption">Родом з: </span><span
                         className="value">{address}</span></div>
                     {/*Registration date!!!!!!!!!!!!!!!!!!!!*/}
-                    <div className="info-row"><i className="fa fa-calendar"/><span className="caption">Зареєстрований на сайті з:</span><span
+                    <div className="info-row"><i className="fa fa-calendar"/><span className="caption">Зареєстрований на сайті з: </span><span
                         className="value">{birthday}</span></div>
                 </div>
             </div>
@@ -78,8 +84,9 @@ export default class UserPage extends Component {
                         className="value">{email || 'email відсутній'}</span></div>
                 </div>
                 <div className="info-row">
+                    <div><h4>Особисті якості: </h4></div>
                     {/*soft-skills!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/}
-                    <div className="info-block"><i className="fa fa-envelope"/><span
+                    <div className="info-block"><i className="fa fa-archive"/><span
                         className="value">{soft_skills}</span></div>
                 </div>
             </div>
@@ -87,21 +94,21 @@ export default class UserPage extends Component {
 
         const footerButtons = (
             <div className="footer-buttons">
-                <button className="btn btn-primary" onClick={ this.handleUpload }>Завантажити документи</button>
+                <button className="btn btn-primary" onClick={this.handleUpload}>Завантажити документи</button>
             </div>
         );
 
-        const display = content => this.state.preloader ? <Preloader /> : content;
+        const display = content => this.state.preloader ? <Preloader/> : content;
 
         return (
             <Fragment>
                 <div className="content container user-page" id="user-page">
                     <div className="profile">
-                        { display(details) }
+                        {display(details)}
                         <hr/>
-                        { display(further) }
+                        {display(further)}
                     </div>
-                    { display(footerButtons) }
+                    {display(footerButtons)}
                 </div>
             </Fragment>
         );
