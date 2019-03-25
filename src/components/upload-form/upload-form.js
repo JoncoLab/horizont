@@ -1,6 +1,8 @@
 import React from 'react';
 import './upload-form.css';
 
-const UploadForm = () => <form><caption>UploadFiles</caption></form>;
+
+const UploadForm = () => {
+};
 
 export default UploadForm;

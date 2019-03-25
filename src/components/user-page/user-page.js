@@ -36,9 +36,6 @@ export default class UserPage extends Component {
 
 
     render() {
-        /**
-         * todo: Поотображать все данные. Посмотреть чего не хватает.
-         */
 
         const {first_name, last_name, middle_name, birthday, profession, soft_skills, tel, email, address} = this.state.userData;
 
@@ -46,17 +43,17 @@ export default class UserPage extends Component {
             <div className="details">
                 <div className="tags">
                     {/*Profile!!!!!!!!!!!!!!!!!!!!*/}
-                    <div className="tag orange">{profession}</div>
+                    <div className="tag orange"><span className="caption">Професія: </span> {profession}</div>
                 </div>
                 {/*User name!!!!!!!!!!!!!!!!!!*/}
-                <div className="title">{first_name}{last_name}{middle_name}</div>
+                <div className="title">{first_name} {last_name} {middle_name}</div>
 
                 <div className="description">
                     {/*Location Address!!!!!!!!!!!!!!!!!!!!!*/}
-                    <div className="info-row"><i className="fa fa-map-marker"/><span className="caption">Родом з:</span><span
+                    <div className="info-row"><i className="fa fa-map-marker"/><span className="caption">Родом з: </span><span
                         className="value">{address}</span></div>
                     {/*Registration date!!!!!!!!!!!!!!!!!!!!*/}
-                    <div className="info-row"><i className="fa fa-calendar"/><span className="caption">Зареєстрований на сайті з:</span><span
+                    <div className="info-row"><i className="fa fa-calendar"/><span className="caption">Зареєстрований на сайті з: </span><span
                         className="value">{birthday}</span></div>
                 </div>
             </div>
@@ -78,8 +75,9 @@ export default class UserPage extends Component {
                         className="value">{email || 'email відсутній'}</span></div>
                 </div>
                 <div className="info-row">
+                    <div><h4>Особисті якості: </h4></div>
                     {/*soft-skills!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/}
-                    <div className="info-block"><i className="fa fa-envelope"/><span
+                    <div className="info-block"><i className="fa fa-archive"/><span
                         className="value">{soft_skills}</span></div>
                 </div>
             </div>
