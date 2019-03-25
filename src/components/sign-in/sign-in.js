@@ -36,6 +36,7 @@ export default class SignIn extends Component {
             .then(
                 valid => {
                     if (!valid) {
+                        this.togglePreloader();
                         throw new Error('Такого користувача не знайдено!');
                     }
                 },
