@@ -134,7 +134,8 @@
 }
 
 .copyright a:hover {
-    color: #4c5c96;
+    color: white;
+    font-style: italic;
     text-decoration: none;
 }
 
