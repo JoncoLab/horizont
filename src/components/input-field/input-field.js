@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import './input-field.css';
 
-const InputField = ({ name, label, type, required, title, noBar, children, onChange }) => {
+const InputField = ({ name, label, type, required, title, noBar, children, onChange, pattern }) => {
     const defaultChildren = (
         <Fragment>
             <input type={ type }
@@ -10,7 +10,8 @@ const InputField = ({ name, label, type, required, title, noBar, children, onCha
                    name={ name }
                    required={ required }
                    onChange={ onChange }
-                   title={ title }/>
+                   title={ title }
+                   pattern={ pattern } />
             { noBar ? null : <span className="bar"/> }
             <label>{ label }</label>
         </Fragment>
@@ -38,7 +39,8 @@ InputField.propTypes = {
     required: PropTypes.bool,
     title: PropTypes.string,
     noBar: PropTypes.bool,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+    pattern: PropTypes.string
 };
 
 export default InputField;

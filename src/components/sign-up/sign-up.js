@@ -17,7 +17,7 @@ class SignUp extends Component {
         { name: 'last_name', label: 'Прізвище' },
         { name: 'middle_name', label: 'По-батькові' },
         { name: 'email', label: 'Email', type: 'email', required: false },
-        { name: 'tel', label: 'Номер мобільного', type: 'tel', title: '+380112222222' },
+        { name: 'tel', label: 'Номер мобільного', type: 'tel', title: '+380112222222', pattern: '[+]380[0-9]{9}' },
         { name: 'profession', label: 'Ваша професія' },
         { name: 'address', label: 'Ваша адреса' },
         { name: 'birthday', label: 'Дата народження', type: 'date' },

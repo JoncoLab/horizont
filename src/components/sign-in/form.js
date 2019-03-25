@@ -13,7 +13,9 @@ const Form = ({ onSubmit, fields, preloader, confirmation, handleConfirmation })
         }
     };
     const content = fields.map((field) =>
-        <InputField { ...field} key={field.name} onChange={ confirmation ? onChange : () => null } />);
+        <InputField { ...field }
+                    key={field.name}
+                    onChange={ confirmation ? onChange : () => null } />);
     const display = preloader ? <Preloader/> : content;
 
     return (
@@ -40,7 +42,8 @@ Form.propTypes = {
     onSubmit: PropTypes.func.isRequired,
     fields: PropTypes.arrayOf(PropTypes.shape({
         name: PropTypes.string.isRequired,
-        label: PropTypes.string.isRequired
+        label: PropTypes.string.isRequired,
+        pattern: PropTypes.string
     })),
     preloader: PropTypes.bool.isRequired,
     confirmation: PropTypes.bool.isRequired,

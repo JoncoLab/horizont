@@ -30,7 +30,8 @@ Form.propTypes = {
         type: PropTypes.string,
         required: PropTypes.bool,
         title: PropTypes.string,
-        noBar: PropTypes.bool
+        noBar: PropTypes.bool,
+        pattern: PropTypes.string
     }))
 };
 

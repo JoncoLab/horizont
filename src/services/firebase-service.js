@@ -179,6 +179,10 @@ class FirebaseService {
         );
     };
 
+    resetReCaptcha = () => {
+        window.recaptchaVerifier.reset();
+    };
+
     /**
      * Вход в приложение по указанному телефону
      * @param tel

@@ -12,11 +12,16 @@ export default class SignIn extends Component {
 
         this._isMounted = false;
     }
+
     state = {
         preloader: true,
         signedIn: false,
         confirmation: false,
-        fields: [ { name: 'tel', label: 'Номер телефону' } ]
+        fields: [ {
+            name: 'tel',
+            label: 'Номер телефону',
+            pattern: '[+]380[0-9]{9}'
+        } ]
     };
 
     fs = new FirebaseService();
@@ -40,7 +45,10 @@ export default class SignIn extends Component {
                         throw new Error('Такого користувача не знайдено!');
                     }
                 },
-                error => { alert(error.message, 'error') }
+                error => {
+                    alert(error.message, 'error');
+                    this.fs.resetReCaptcha();
+                }
             );
     };
 
@@ -83,30 +91,36 @@ export default class SignIn extends Component {
 
         const tel = this.getInput('tel');
 
-        this.togglePreloader();
+        if (/[+]380[0-9]{9}/.test(tel)) {
 
-        this.validateUserRegistration(tel)
-            .then(
-                () => {
-                    this.sendSMS(tel)
-                        .then(() => {
-                            this._isMounted && this.setState({
-                                confirmation: true,
-                                fields: [ {
-                                    name: 'confirmation-code',
-                                    label: 'Код підтвердження з СМС'
-                                } ]
+            this.togglePreloader();
+
+            this.validateUserRegistration(tel)
+                .then(
+                    () => {
+                        this.sendSMS(tel)
+                            .then(() => {
+                                this._isMounted && this.setState({
+                                    confirmation: true,
+                                    fields: [ {
+                                        name: 'confirmation-code',
+                                        label: 'Код підтвердження з СМС'
+                                    } ]
+                                });
+
+                                this.togglePreloader();
+                            }, () => {
+                                this.togglePreloader();
                             });
-
-                            this.togglePreloader();
-                        }, () => {
-                            this.togglePreloader();
-                        });
-                },
-                reason => {
-                    alert(reason.message, 'error');
-                }
-            );
+                    },
+                    reason => {
+                        alert(reason.message, 'error');
+                    }
+                );
+        } else {
+            alert('Некоректний формат номеру!', 'warning');
+            this.fs.resetReCaptcha();
+        }
     };
 
     handleConfirmation = code => {
