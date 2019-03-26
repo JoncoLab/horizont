@@ -6,12 +6,12 @@ import './user-page.css';
 export default class UserPage extends Component {
 	
 	fs = new FirebaseService();
-	
-	handleUpload = () => {
-		// gs://horizont-jobs-jl.appspot.com/
-		// gs://horizont-jobs-jl.appspot.com/initial
-		
-		alert('Документи відправлено!');
+
+	fileUp = document.getElementById('fileUp');
+
+	handleUpload = (event)=> {
+		event.preventDefault();
+		console.log(this.fileUp);
 		/**
 		 * todo: Подгрузка и добавление файлов в Storage
 		 */
@@ -38,7 +38,7 @@ export default class UserPage extends Component {
 	}
 	
 	render() {
-		
+
 		const { first_name, last_name, middle_name, birthday, profession, soft_skills, tel, email, address } = this.state.userData;
 		
 		const details = (
@@ -87,9 +87,9 @@ export default class UserPage extends Component {
 		);
 		
 		const footerButtons = (
-			<div className="footer-buttons">
-				<button className="btn btn-primary" onClick={ this.handleUpload }>Завантажити документи</button>
-			</div>
+			<form className="footer-buttons" onSubmit={this.handleUpload} >
+				<input className="btn btn-primary" id="fileUp" type="file" value="Завантажити документи" />
+			</form>
 		);
 		
 		const display = content => this.state.preloader ? <Preloader/> : content;
