@@ -1,12 +1,11 @@
 import AppFooter from './app-footer';
-import FooterTitle from './footer-title';
-import FooterForm from './footer-form';
 import FooterCopyright from './footer-copyright';
-
+import FooterForm from './footer-form';
+import FooterTitle from './footer-title';
 
 export {
-    AppFooter,
-    FooterTitle,
-    FooterForm,
-    FooterCopyright
+	AppFooter,
+	FooterTitle,
+	FooterForm,
+	FooterCopyright
 };

@@ -9,8 +9,9 @@ html {
     background-attachment: fixed;
     height: 100%;
 }
-#root{
-    background-color: rgba(46,49,65,.8) !important;
+
+#root {
+    background-color: rgba(46, 49, 65, .8) !important;
     min-height: 100%;
 }
 

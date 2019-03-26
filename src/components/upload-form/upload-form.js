@@ -1,39 +1,77 @@
-import React, {Component} from 'react';
+// import React from 'react';
+// import './upload-form.css';
+//
+//
+// const UploadForm = () => {
+//
+// };
+//
+// export default UploadForm;
+
+import { map } from 'lodash';
+import PropTypes from 'prop-types';
+import React from 'react';
 import Dropzone from 'react-dropzone';
-import './upload-form.css';
+import { connect } from 'react-redux';
+import { firebaseConnect } from 'react-redux-firebase';
+import { compose, setPropTypes, withHandlers } from 'recompose';
 
 import {FirebaseService, alert} from "../../services";
 
-export default class UploadForm extends Component {
+const handlers = {
+	// Uploads files and push's objects containing metadata to database at dbPath
+	onFilesDrop: props => files => {
+		// uploadFiles(storagePath, files, dbPath)
+		return props.firebase.uploadFiles(filesPath, files, filesPath);
+	},
+	onFileDelete: props => (file, key) => {
+		// deleteFile(storagePath, dbPath)
+		return props.firebase.deleteFile(file.fullPath, `${ filesPath }/${ key }`);
+	}
+};
 
+const enhancerPropsTypes = {
+	firebase: PropTypes.object.isRequired
+};
 
+// Component Enhancer that adds props.firebase and creates a listener for
+// files them passes them into props.uploadedFiles
+const enhance = compose(
+	// Create listeners for Real Time Database which write to redux store
+	firebaseConnect([ { path: filesPath } ]),
+	// connect redux state to props
+	connect(({ firebase: { data } }) => ({
+		uploadedFiles: data[ filesPath ]
+	})),
+	// Set proptypes of props used within handlers
+	setPropTypes(enhancerPropsTypes),
+	// Add handlers as props
+	withHandlers(handlers)
+);
 
-    fs = new FirebaseService();
+const Uploader = ({ uploadedFiles, onFileDelete, onFilesDrop }) => (
+	<div>
+		<Dropzone onDrop={ onFilesDrop }>
+			<div>Drag and drop files here or click to select</div>
+		</Dropzone>
+		{ uploadedFiles && (
+			<div>
+				<h3>Uploaded file(s):</h3>
+				{ map(uploadedFiles, (file, key) => (
+					<div key={ file.name + key }>
+						<span>{ file.name }</span>
+						<button onClick={ () => onFileDelete(file, key) }>Delete File</button>
+					</div>
+				)) }
+			</div>
+		) }
+	</div>
+);
 
-
-
-
-    render() {
-
-        const DbURL = this.fs._config.databaseURL;
-
-        const storage = this.fs.storage();
-        const storageRef = storage.ref();
-
-        var imagesRef = storageRef.child({Dropzone});
-
-
-        return (
-            <div>
-                <Dropzone onDrop={this.onFilesDrop}>
-                    <div>Drag and drop files here or click to select</div>
-                </Dropzone>
-
-            </div>
-        );
-    }
-}
-
+Uploader.propTypes = {
+	firebase: PropTypes.object.isRequired,
+	uploadedFiles: PropTypes.object
+};
 
 //
 //
