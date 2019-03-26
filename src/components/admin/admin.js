@@ -7,20 +7,23 @@ export default class Admin extends Component {
 	
 	fs = new FirebaseService();
 	
-	componentDidMount() {
-		this.fs.getAllUsers()
-			.then((users) => {
+	togglePreloader = () => this.setState(({ preloader }) => ({ preloader: !preloader }));
+	
+	setUsers = () => {
+		this.state.getNextUserEntries
+			.then(({ users, getNextUserEntries }) => {
 				this.setState({
-					allUsers: users
+					users,
+					getNextUserEntries
 				});
 			}, () => {
 				alert('Database connection error', 'error');
 			})
-			.finally(() => {
-				this.setState({
-					preloader: false
-				});
-			});
+			.finally(() => this.togglePreloader());
+	};
+	
+	componentDidMount() {
+		this.setUsers();
 		
 		this.fs.getAllMessages()
 			.then((messages) => {
@@ -55,8 +58,8 @@ export default class Admin extends Component {
 					<th>Наявність документів</th>
 				</tr>
 				</thead>
-				<tbody>
-				{ this.state.allUsers.map(({ id, first_name, last_name, middle_name, birthday, profession, soft_skills, tel, email, address, doc }) => (
+				<tbody onDoubleClick={ this.setUsers }>
+				{ this.state.users.map(({ id, first_name, last_name, middle_name, birthday, profession, soft_skills, tel, email, address, doc }) => (
 					<tr key={ id }>
 						<td><span>{ first_name }</span></td>
 						<td><span>{ last_name }</span></td>
@@ -108,7 +111,8 @@ export default class Admin extends Component {
 	
 	state = {
 		preloader: true,
-		allUsers: [],
+		users: [],
+		getNextUserEntries: this.fs.getAllUsers(),
 		allMessages: []
 	};
 }

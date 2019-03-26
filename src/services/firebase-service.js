@@ -91,14 +91,27 @@ class FirebaseService {
 	
 	/**
 	 * Получение всех пользователей;
-	 * @returns {Promise<...[]>} - возвращает массив с объектами пользовтелей
+	 * @returns {Promise<{getNextUserEntries: Promise<firebase.firestore.QuerySnapshot>, users: {id: string}[]}>} - возвращает массив с объектами пользовтелей
 	 */
-	getAllUsers = async () => await this._users.get()
+	getAllUsers = async () => await this._users
+		.orderBy('last_name')
+		.limit(5)
+		.get()
 		.then(({ docs }) => {
-			return [
-				...docs.map((doc) =>
-					({ id: doc.id, ...doc.data() }))
-			];
+			
+			const lastEntry = docs[docs.length - 1];
+			
+			return {
+				getNextUserEntries: this._users
+					.orderBy('last_name')
+					.startAfter(lastEntry)
+					.limit(5)
+					.get(),
+				users: [
+					...docs.map((doc) =>
+						({ id: doc.id, ...doc.data() }))
+				]
+			};
 		}, (reason) => {
 			alert(reason);
 		});
