@@ -13,10 +13,8 @@ export default class UserPage extends Component {
     fs = new FirebaseService();
 
     handleUpload = () => {
-        // gs://horizont-jobs-jl.appspot.com/
-        // gs://horizont-jobs-jl.appspot.com/initial
 
-        alert('Документи відправлено!');
+        // alert('Документи відправлено!');
         /**
          * todo: Подгрузка и добавление файлов в Storage
          */
