@@ -60,8 +60,8 @@ class FirebaseService {
 	_app = firebase.app();
 	_db = this._app.firestore();
 	_users = this._db
-		.collection('users')
-		.orderBy('last_name');
+		.collection('users');
+		// .orderBy('last_name');//user-page not load with it;
 	_messages = this._db.collection('messages');
 	
 	/**

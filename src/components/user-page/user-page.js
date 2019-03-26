@@ -12,6 +12,7 @@ export default class UserPage extends Component {
 	handleUpload = (event)=> {
 		event.preventDefault();
 		console.log(this.fileUp);
+
 		/**
 		 * todo: Подгрузка и добавление файлов в Storage
 		 */
@@ -85,10 +86,14 @@ export default class UserPage extends Component {
 				</div>
 			</div>
 		);
+
+		const styleInputFile = {
+
+		};
 		
 		const footerButtons = (
 			<form className="footer-buttons" onSubmit={this.handleUpload} >
-				<input className="btn btn-primary" id="fileUp" type="file" value="Завантажити документи" />
+				<input className="btn btn-primary" id="fileUp" type="file" style={styleInputFile} />
 			</form>
 		);
 		
