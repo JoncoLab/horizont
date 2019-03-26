@@ -59,7 +59,9 @@ class FirebaseService {
 	
 	_app = firebase.app();
 	_db = this._app.firestore();
-	_users = this._db.collection('users');
+	_users = this._db
+		.collection('users')
+		.orderBy('last_name');
 	_messages = this._db.collection('messages');
 	
 	/**
@@ -89,12 +91,28 @@ class FirebaseService {
 			});
 	};
 	
+	getUsers = async entry => await this._users
+		.limit(5)
+		.startAfter(entry)
+		.get()
+		.then(({ docs }) => {
+			
+			const lastEntry = docs[docs.length - 1];
+			
+			return {
+				getNextUserEntries: () => this.getUsers(lastEntry),
+				users: [
+					...docs.map((doc) =>
+						({ id: doc.id, ...doc.data() }))
+				]
+			};
+		});
+	
 	/**
 	 * Получение всех пользователей;
-	 * @returns {Promise<{getNextUserEntries: Promise<firebase.firestore.QuerySnapshot>, users: {id: string}[]}>} - возвращает массив с объектами пользовтелей
+	 * @returns {Promise<{getNextUserEntries: Promise<*>, users: {id: string}[]}>} - возвращает массив с объектами пользовтелей
 	 */
 	getAllUsers = async () => await this._users
-		.orderBy('last_name')
 		.limit(5)
 		.get()
 		.then(({ docs }) => {
@@ -102,11 +120,7 @@ class FirebaseService {
 			const lastEntry = docs[docs.length - 1];
 			
 			return {
-				getNextUserEntries: this._users
-					.orderBy('last_name')
-					.startAfter(lastEntry)
-					.limit(5)
-					.get(),
+				getNextUserEntries: () => this.getUsers(lastEntry),
 				users: [
 					...docs.map((doc) =>
 						({ id: doc.id, ...doc.data() }))

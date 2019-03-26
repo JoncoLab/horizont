@@ -7,10 +7,8 @@ export default class Admin extends Component {
 	
 	fs = new FirebaseService();
 	
-	togglePreloader = () => this.setState(({ preloader }) => ({ preloader: !preloader }));
-	
 	setUsers = () => {
-		this.state.getNextUserEntries
+		this.state.getNextUserEntries()
 			.then(({ users, getNextUserEntries }) => {
 				this.setState({
 					users,
@@ -19,10 +17,11 @@ export default class Admin extends Component {
 			}, () => {
 				alert('Database connection error', 'error');
 			})
-			.finally(() => this.togglePreloader());
+			.finally(() => this.setState({ preloader: false }));
 	};
 	
 	componentDidMount() {
+		
 		this.setUsers();
 		
 		this.fs.getAllMessages()
@@ -112,7 +111,7 @@ export default class Admin extends Component {
 	state = {
 		preloader: true,
 		users: [],
-		getNextUserEntries: this.fs.getAllUsers(),
+		getNextUserEntries: () => this.fs.getAllUsers(),
 		allMessages: []
 	};
 }
