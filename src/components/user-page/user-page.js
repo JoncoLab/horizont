@@ -7,17 +7,42 @@ export default class UserPage extends Component {
 	
 	fs = new FirebaseService();
 
-	fileUp = document.getElementById('fileUp');
+	// file = file => document.getElementById('fileUp');
 
-	handleUpload = (event)=> {
-		event.preventDefault();
-		console.log(this.fileUp);
+    constructor(props) {
+        super(props);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.fileInput = React.createRef();
+    }
 
-		/**
-		 * todo: Подгрузка и добавление файлов в Storage
-		 */
-	};
-	
+    handleSubmit = (event) => {
+        event.preventDefault();
+
+        const fileUp = this.fileInput.current.files[0].value;
+
+        //test on cache file successful
+        alert(
+            `файл сформовано - ${
+                this.fileInput.current.files[0].name
+                }`);
+
+        //if exist on FBS
+        // this.fs.uploadFile(fileUp)
+        //     .then(
+        //         //test on cache file successful
+        //         alert(
+        //             `файл сформовано - ${
+        //                 this.fileInput.current.files[0].name
+        //                 }`
+        //         )
+        //     );
+
+
+        /**
+         * todo: Подгрузка и добавление файлов в Storage
+         */
+    };
+
 	componentDidMount() {
 		
 		const currentUser = this.fs.getCurrentUser();
@@ -87,14 +112,13 @@ export default class UserPage extends Component {
 			</div>
 		);
 
-		const styleInputFile = {
-
-		};
 		
 		const footerButtons = (
-			<form className="footer-buttons" onSubmit={this.handleUpload} >
-				<input className="btn btn-primary" id="fileUp" type="file" style={styleInputFile} />
+			<form className="footer-buttons" onSubmit={this.handleSubmit}>
+				<input className="btn btn-primary" id="fileUp" type="file" ref={this.fileInput} />
+                <button className="btn btn-outline-info" type="submit">Upload</button>
 			</form>
+
 		);
 		
 		const display = content => this.state.preloader ? <Preloader/> : content;
@@ -112,7 +136,7 @@ export default class UserPage extends Component {
 			</Fragment>
 		);
 	}
-	
+
 	state = {
 		preloader: true,
 		userData: {}
