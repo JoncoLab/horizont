@@ -80,8 +80,8 @@ export default class UserPage extends Component {
 				<div className="description">
 					{/*Location Address!!!!!!!!!!!!!!!!!!!!!*/ }
 					<div className="info-row"><i className="fa fa-map-marker"/><span
-						className="caption">Родом з: </span><span
-						className="value">{ address }</span></div>
+						className="caption">Адреса: </span><span
+						className="value"> { address }</span></div>
 					{/*Registration date!!!!!!!!!!!!!!!!!!!!*/ }
 					<div className="info-row"><i className="fa fa-calendar"/><span className="caption">Зареєстрований на сайті з: </span><span
 						className="value">{ birthday }</span></div>
