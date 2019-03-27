@@ -12,7 +12,7 @@
     margin-bottom: 30px;
 }
 
-.footer-buttons input {
+.footer-buttons input[type='file'] {
     width: 40%;
 }
 

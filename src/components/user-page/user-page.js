@@ -18,14 +18,15 @@ export default class UserPage extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
 
-        const fileUp = this.fileInput.current.files[0].value;
+        const fileUp = this.fileInput.current.files[0];
 
         //test on cache file successful
         alert(
             `файл сформовано - ${
                 this.fileInput.current.files[0].name
                 }`);
-
+        console.log(fileUp);
+        console.log(fileUp.type);
         //if exist on FBS
         // this.fs.uploadFile(fileUp)
         //     .then(
@@ -111,11 +112,10 @@ export default class UserPage extends Component {
 				</div>
 			</div>
 		);
-
-		
+        //like this or https://codepen.io/GeoffreyCrofte/pen/HbwcG
 		const footerButtons = (
-			<form className="footer-buttons" onSubmit={this.handleSubmit}>
-				<input className="btn btn-primary" id="fileUp" type="file" ref={this.fileInput} />
+			<form className="footer-buttons custom-file" onSubmit={this.handleSubmit}>
+                <input className="btn btn-outline-info" id="fileUp" type="file" ref={this.fileInput} aria-label="some text" placeholder="some text"/>
                 <button className="btn btn-outline-info" type="submit">Upload</button>
 			</form>
 
