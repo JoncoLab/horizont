@@ -83,7 +83,7 @@ export default class UserPage extends Component {
 						className="caption">Адреса: </span><span
 						className="value"> { address }</span></div>
 					{/*Registration date!!!!!!!!!!!!!!!!!!!!*/ }
-					<div className="info-row"><i className="fa fa-calendar"/><span className="caption">Зареєстрований на сайті з: </span><span
+					<div className="info-row"><i className="fa fa-calendar"/><span className="caption">Дата народження: </span><span
 						className="value">{ birthday }</span></div>
 				</div>
 			</div>

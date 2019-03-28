@@ -49,7 +49,7 @@ export default class Admin extends Component {
 					<th>Фамілія</th>
 					<th>Побатькові</th>
 					<th>Дата народження</th>
-					<th>Проффеія</th>
+					<th>Професія</th>
 					<th>Особисті якості</th>
 					<th>Телефон</th>
 					<th>Електронна адреса</th>
